@@ -132,7 +132,11 @@
 				<span class="dot" onclick='currentSlide(4)'></span>
 			</div>
 		</section>
-
+		
+		<div>	
+			<button style="margin-left:40%"><a href="includes/aboutUsForma.php">Quick info about us</a></button>	
+		</div>
+		
 		<section class="pjesa2">
 
 			<div class="wpsau">
