@@ -1,2 +1,2 @@
-# PHP_Gr17_2020
-Projekti ne PHP
+# INT19_20_Gr17
+Slick &amp; Classy

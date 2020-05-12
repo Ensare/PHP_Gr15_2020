@@ -1,13 +1,12 @@
 <?php include("oop.php");?>
 
 <body style="background-color: #DADADA">
-<div>
 <?php
     $person1 = new Person("Arita","Alidemaj","Pejë","aritaalidemaj@gmail.com","049-111-000","20","Manager","09:00-14:00","Monday-Wednesday","02/03/2017","3 Years");
     $person2 = new Person("Alina","Fazliu","Mitrovicë","alinafazliu@gmail.com","049-555-522","20","Manager","11:00-16:00","Tuesday-Friday","11/05/2016","4 Years");
     $person3 = new Person("Ensare","Islami","Prishtinë","ensareislami@gmai.com","049-888-777","20","Manager","12:00-18:00","Thursday-Saturday","19/12/2018","2 Years");
 
-    echo "<table style='border: 2px solid; float:left;padding:10px;margin:10% 4%; width:370px; height:440px;font-size:18px; '>
+    echo "<table style='border: 2px solid; float:left;padding:10px;margin:10% 4% 2% 4%; width:370px; height:440px;font-size:18px; '>
             <tr>
                 <th>Name:</th><td>".$person1->name."</td>
             </tr>";
@@ -43,7 +42,7 @@
             </tr>";
     echo "</table>";
 
-    echo "<table style='border: 2px solid; float:left;padding:10px; margin:10% 4%;width:370px; height:440px;font-size:18px; '>
+    echo "<table style='border: 2px solid; float:left;padding:10px; margin:10% 4% 2% 4%;width:370px; height:440px;font-size:18px; '>
             <tr>
                 <th>Name:</th><td>".$person2->name."</td>
             </tr>";
@@ -79,7 +78,7 @@
             </tr>";
     echo "</table>";
 
-    echo "<table style='border: 2px solid; float:left;padding:10px;margin:10% 4%; width:370px; height:440px;font-size:18px; '>
+    echo "<table style='border: 2px solid; float:left;padding:10px;margin:10% 4% 2% 4%; width:370px; height:440px;font-size:18px; '>
             <tr>
                 <th>Name:</th><td>".$person3->name."</td>
             </tr>";
@@ -114,4 +113,6 @@
                 <th>Experience:</th><td>".$person3->experience."</td>
             </tr>";
     echo "</table>";
+    echo "<button style='margin-left:40%;border-radius:5px;padding:8px;font-size:18px'><a href='setGet.php' style='color:#742323'>Info For Company</button>";
 ?> 
+</body>

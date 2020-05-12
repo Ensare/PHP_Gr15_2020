@@ -332,7 +332,7 @@
 
 
 
-            <form id="mainForm" method="POST" >
+            <form id="mainForm"  action="includes/apply.inc.php" method="POST" >
                 <fieldset>
                     <legend>APPLY FOR JOB</legend>
                     <table class="tabela">
@@ -526,7 +526,7 @@
 						}
 					}
 					?>
-						<form method="POST" action="includes/apply.inc.php">
+						<form method="POST">
 							<input type="text" name="name" placeholder="Name" class="f" /><?php if(isset($name)){echo $name;}?><br /><br /> 
 							<input type="text" name="email" placeholder="Email" class="f" /><?php if(isset($email)){echo $email;}?><br /><br />
 							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if(isset($subject)){echo $subject;}?><br /><br />

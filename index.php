@@ -132,13 +132,12 @@
 				<span class="dot" onclick='currentSlide(4)'></span>
 			</div>
 		</section>
-		
 		<div>	
-			<button style="margin-left:40%"><a href="includes/aboutUsForma.php">Quick info about us</a></button>	
-		</div>
-		
+				<button style="margin-left:40%"><a href="includes/aboutUsForma.php">Quick info about us</a></button>
+				
+			</div>
 		<section class="pjesa2">
-
+		
 			<div class="wpsau">
 				<h2 class="maintitle"> What People Say About Us</h2>
 				<p class="src"><img src="images\qmarks.png" /> Tommy Tanker - Customer</p>
