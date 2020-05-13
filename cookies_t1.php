@@ -15,11 +15,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
-    <script src="javascript/confirm.js"></script>
-    <script src="javascript/allpages.js"></script>
-    <script src="javascript/jquerythingz.js"></script>
-    <script src="javascript/dragndrop.js"></script>
-    <script src="javascript/loja.js"></script>
 <title>(Type a title for your page here)</title>
 <style>
 #forma1
@@ -53,4 +48,3 @@ input[type=text]
 </body>
 
 </html>
-
