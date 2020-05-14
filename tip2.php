@@ -11,6 +11,23 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="javascript/jquery-3.4.1.min.js"></script>
+        <script>
+function showHint(str) {
+  if (str.length == 0) {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "gethint.php?q=" + str, true);
+    xmlhttp.send();
+  }
+}
+</script>
     </head>
     
     <style>
@@ -61,28 +78,29 @@
 
             <div id="search">
                 <form method="get" action="">
-                    <input type="search" name="Search">
+                    <input type="text" id="fname" name="fname" onkeyup="showHint(this.value)">
                 </form>
+                <p>Suggestions: <span id="txtHint"></span> </p>
             </div>
 
 
             <div class="navbar">
-                <a href="index.php">Home</a>
+                <a href="index.html">Home</a>
                 <div class="dropdown">
                     <button class="dropbtn">Interior
                         <i class="fa fa-angle-down"></i>
                     </button>
                     <div class="dropcnt">
-                        <a href="interieri/dhoma_e_dites.php">Living Room</a>
-                        <a href="interieri/kuzhina.php">Kitchen</a>
-                        <a href="interieri/dhoma_e_gjumit.php">Bedroom</a>
-                        <a href="interieri/dhoma_e_punes.php">Workroom</a>
+                        <a href="interieri/dhoma_e_dites.html">Living Room</a>
+                        <a href="interieri/kuzhina.html">Kitchen</a>
+                        <a href="interieri/dhoma_e_gjumit.html">Bedroom</a>
+                        <a href="interieri/dhoma_e_punes.html">Workroom</a>
                     </div>
                 </div>
-                <a href="tips_and_tricks.php">Tips and tricks</a>
-                <a href="porosit_online.php">Online order</a>
-                <a href="apliko_per_pune.php">Apply for job</a>
-                <a href="rreth_nesh.php">About us</a>
+                <a href="tips_and_tricks.html">Tips and tricks</a>
+                <a href="porosit_online.html">Online order</a>
+                <a href="apliko_per_pune.html">Apply for job</a>
+                <a href="rreth_nesh.html">About us</a>
             </div>
         </nav>
     </header>
@@ -182,65 +200,22 @@
 
 					<div id="d">
 						<h5>CONTACT US</h5>
-					<?php
-					$regex = "/^[a-zA-Z\s]+$/";
-					$regex1 = "/^[a-zA-Z\s\d\.]+$/";
-					$regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-					if(isset($_POST['submit'])){
-						if(preg_match($regex,$_POST['name'])){
-							$name = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['name'])){
-							$name = "<span style='color:red'>*Required</span>";
-						}
-						else{
-							$name = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex2,$_POST['email'])){
-							$email = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['email'])){
-							$email = "<span style='color:red'>*Required</span>";
-						}else {
-							$email =  "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['subject'])){
-							$subject = "<span style='color:green'>&#10004; Valid input</span>";
-						}else{
-							$subject = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['message'])){
-							$message = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['message'])){
-							$message = "<span>No input added</span>";
-						}
-						else{
-							$message = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-					}
-					?>
-						<form method="POST" action="">
-							<input type="text" name="name" placeholder="Name" class="f" /><?php if(isset($name)){echo $name;}?><br /><br /> 
-							<input type="text" name="email" placeholder="Email" class="f" /><?php if(isset($email)){echo $email;}?><br /><br />
-							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if(isset($subject)){echo $subject;}?><br /><br />
-							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if(isset($message)){echo $message;}?>
-							<br /><br />
+						<form method="POST" action="" onsubmit="return checkForm(this);">
+							<input type="text" name="name" placeholder="Name" class="f" /><br /><br />
+							<input type="text" name="email" placeholder="Email" class="f"/><br /><br />
+							<input type="type" name="subject" placeholder="Subject" class="f"/><br /><br />
+							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea> <br /><br />
 							<input id="submit" type="submit" name="submit">
 						</form>
 					</div>
 				</div>
 				<div>
 					<address>
-						<?php
-							$copy_date = "Copyright 2019";
-							$copy_date = preg_replace("([0-9]+)","2020",$copy_date);
-						?>
-						<p id="copyright">&copy; <?php echo $copy_date; ?> Fundamentals of Web Development
-
-							.........email: <a href="mailto:yourhome@gmail.com ">yourhome@gmail.com</a><br />
-							
-						</p>
-						
-					</address>
+					 <p id="copyright">Copyright &copy; 2017 Fundamentals of Web Development
 					
+                     .........email: <a href="mailto:yourhome@gmail.com ">yourhome@gmail.com</a><br/>
+                     </p>
+                     </addrress>
 				</div>
 
 			</section>

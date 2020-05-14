@@ -1,3 +1,8 @@
+<?Php
+setcookie ("Plus2netCookie", "", time() - 3600);
+
+
+?>
 <!doctype html public "-//w3c//dtd html 3.2//en">
 
 <html>
@@ -15,42 +20,24 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
-    <script src="javascript/confirm.js"></script>
-    <script src="javascript/allpages.js"></script>
-    <script src="javascript/jquerythingz.js"></script>
-    <script src="javascript/dragndrop.js"></script>
-    <script src="javascript/loja.js"></script>
 <title>(Type a title for your page here)</title>
-<style>
-#forma1
-{
-    margin-top: 45px;
-}
-input[type=text]
- {
-  width: 15%;
-  padding: 7px 13px;
-  margin: 8px 0;
-  box-sizing: border-box;
+</head>
 
+<body>
+<style>
+#paragrafi
+{
+    text-align:center;
+    padding: 50px;
+    font-face:Verdana;
+    size:2;
 }
 </style>
 
-
-</head>
-
-<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#ff0000">
-<form method=post id='forma1' action=cookies_redirect.php  style="text-align: center;  " >
-<font face='Verdana' size='3' >Enter Your Name
-</font><input type=text name=name  >
-
-<button id="btn1">Next</button>
- 
- </form>
+<p id=paragrafi>Cookie is removed. You can check this by going to Check the cookie page. Checking the status of the cookie. </p>
 <br><br><br>
 <center><font face='Verdana' size='2'><a href=cookies_t1.php>Start a new cookie </a> | <a href=cookies_t2.php>Check the cookie </a> | <a href=cookies_t3.php>Remove the cookie </a>
 </font></center>
 </body>
 
 </html>
-
