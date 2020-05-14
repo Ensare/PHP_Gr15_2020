@@ -1,3 +1,48 @@
+<?php
+session_start();
+
+$connect = mysqli_connect("localhost", "root", "php123!", "phpconnection");
+if (isset($_POST["add_to_cart"])) {
+    if (isset($_SESSION["shopping_cart"])) {
+        $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+        if (!in_array($_GET["id"], $item_array_id)) {
+            $count = count($_SESSION["shopping_cart"]);
+            $item_array = array(
+                'item_id'               =>     $_GET["id"],
+                'item_name'               =>     $_POST["hidden_name"],
+                'item_price'          =>     $_POST["hidden_price"],
+                'item_quantity'          =>     $_POST["quantity"]
+            );
+            $_SESSION["shopping_cart"][$count] = $item_array;
+        } else {
+            echo '<script>alert("Item Already Added")</script>';
+            echo '<script>window.location="porosit_online.php"</script>';
+        }
+    } else {
+        $item_array = array(
+            'item_id'               =>     $_GET["id"],
+            'item_name'               =>     $_POST["hidden_name"],
+            'item_price'          =>     $_POST["hidden_price"],
+            'item_quantity'          =>     $_POST["quantity"]
+        );
+        $_SESSION["shopping_cart"][0] = $item_array;
+    }
+}
+if (isset($_GET["action"])) {
+    if ($_GET["action"] == "delete") {
+        foreach ($_SESSION["shopping_cart"] as $keys => $values) {
+            if ($values["item_id"] == $_GET["id"]) {
+                unset($_SESSION["shopping_cart"][$keys]);
+                echo '<script>alert("Item Removed")</script>';
+                echo '<script>window.location="porosit_online.php"</script>';
+            }
+        }
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html manifest="home.appcache">
 
@@ -9,6 +54,7 @@
     <link href='https://fonts.googleapis.com/css?family=Allan' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="lib/reset.css">
     <link rel="stylesheet" href="lib/animate.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="lib/stilizimi.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
@@ -21,126 +67,35 @@
     <script src="javascript\produktet.js"></script>
 
 
-    <script>
-        $(document).ready(function () {
-            $("#flip").click(function () {
-                $("#panel").slideToggle("slow");
-            });
-        });
-        $(document).ready(function () {
-            $("button").click(function () {
-                $("#animateee").animate({
-                    left: '250px',
-                    height: '+=40px',
-                    width: '+=130px'
-                });
-            });
-        });
-
-    </script>
-
-    <style>
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-        @import url(https://fonts.googleapis.com/css?family=Merriweather);
-
-        form p {
-            margin-top: 0.5em;
-        }
-
-        form input[type="text"],
-        form select {
-            font-size: 16px;
-            height: 24px;
-            padding: 3px;
-        }
-
-        form select {
-            height: 30px;
-        }
-
-
-        #panel,
-        #flip {
-            width: 100%;
-            padding: 5px 0px;
-            text-align: center;
-            background-color: #D4D4D4;
-            border: solid 1px #696969;
-            color: #696969;
-            cursor: pointer;
-        }
-
-        #panel {
-            padding: 50px 0px;
-            display: none;
-        }
-
-        .rectangle {
-            margin-bottom: 5px;
-        }
-
-        .error {
-            background: #FFCDD2 url(error.png) no-repeat 98% center;
-            box-shadow: 0 0 5px #FF5252;
-            border-color: #FF1744;
-        }
-
-        .btn {
-            -webkit-border-radius: 3;
-            -moz-border-radius: 3;
-            border-radius: 10px;
-            font-size: 15px;
-            height: 32px;
-            color: white;
-            background: #696969;
-            height: 50px;
-            text-decoration: none;
-            width: 150px;
-        }
-
-        .btn:hover {
-            background: lightslategray;
-            text-decoration: none;
-        }
-
-        table {
-            border: 3px solid;
-        }
-
-        #forme {
-            margin: 3% 10% 3% 15%;
-        }
-
-        table,
-        #animateee {
-            color: #fff;
-            background: linear-gradient(-45deg, #BA9090, #ABA2A2, #752424, #95DDD8);
-            background-size: 400% 400%;
-            animation: change 10s ease-in-out infinite;
-        }
-
-        @keyframes change {
-            0% {
-                background-position: 0 50%;
-
-            }
-
-            50% {
-                background-position: 100% 50%;
-
-            }
-
-            100% {
-                background-position: 0 50%;
-
-            }
-
-        }
-    </style>
+        
 
 </head>
 
-    <body>
+<style>
+
+    .container {
+        
+        margin: 5% 10%;
+         
+    }
+
+    .col-md-4{
+        display: inline-block;
+        margin:1% 1%;
+    }
+
+    .carts{
+        width: 200px;
+        height: 220px;
+        border:1px solid #333;
+        background-color:#f1f1f1;
+        border-radius:5px;
+        padding:10px; 
+    }
+
+</style>
+
+<body>
     <header class="animated fadeIn">
 
         <h1>Your Home</h1>
@@ -148,16 +103,11 @@
         <nav>
             <div id="smedialinks">
                 <ul>
-                    <li><a href="https://www.linkedin.com/"><abbr title="Linkedin"><img
-                                    src="images/linkedin.png"></abbr></a></li>
-                    <li><a href="https://www.twitter.com/"><abbr title="Twitter"><img
-                                    src="images/twitter.png"></abbr></a></li>
-                    <li><a href="https://www.pinterest.com/"><abbr title="Pinterest"><img
-                                    src="images/pinterest.png"></abbr></a></li>
-                    <li><a href="https://plus.google.com/"><abbr title="+Google"><img
-                                    src="images/googleplus.png"></abbr></a></li>
-                    <li><a href="https://www.facebook.com/"><abbr title="Facebook"><img
-                                    src="images/facebook.png"></abbr></a></li>
+                    <li><a href="https://www.linkedin.com/"><abbr title="Linkedin"><img src="images/linkedin.png"></abbr></a></li>
+                    <li><a href="https://www.twitter.com/"><abbr title="Twitter"><img src="images/twitter.png"></abbr></a></li>
+                    <li><a href="https://www.pinterest.com/"><abbr title="Pinterest"><img src="images/pinterest.png"></abbr></a></li>
+                    <li><a href="https://plus.google.com/"><abbr title="+Google"><img src="images/googleplus.png"></abbr></a></li>
+                    <li><a href="https://www.facebook.com/"><abbr title="Facebook"><img src="images/facebook.png"></abbr></a></li>
                 </ul>
             </div>
 
@@ -189,391 +139,107 @@
         </nav>
     </header>
 
-         <section>
-        <div id="flip">Welcome.</div>
-        <div id="panel">Choose now, choose well.</div>
 
-        <form method="POST" id="mainForm" action="paguaj.php" onsubmit="return checkForm(this);">
-            <h1 id="shpi" style="text-align: center; margin-top:2%;">Shipping Information</h1>
-            <table cellspacing="50px;" id="forme">
-                <thead>
+    <div class="container" width='700px'>
+        <h1 align='center' style="margin-bottom:4%; font-size:1.5em">Choose the products you want to buy!</h1>
+        <?php
+        $query = "SELECT * FROM products ORDER BY id ASC";
+        $result = mysqli_query($connect, $query);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+        ?>
+                <div class="col-md-4" align="center">
+                    <form method="post" action="porosit_online.php?action=add&id=<?php echo $row["id"]; ?>">
+                        <div class="carts" align="center">
+                            <h5 class="text-info"><?php echo $row["name"]; ?></h5>
+                            <h5 class="text-danger">$ <?php echo $row["price"]; ?></h5>
+                            <input type="text" name="quantity" class="form-control" value="1" />
+                            <input type="hidden" name="hidden_name" value="<?php echo $row["name"]; ?>" />
+                            <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>" />
+                            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+                        </div>
+                    </form>
+                </div>
+        <?php
+            }
+        }
+        ?>
+        <div style="clear:both"></div>
+        <br />
+        <h3>Order Details</h3>
+        <div class="table-responsive">
+            <table border="3" >
+                <tr>
+                    <th width="40%">Item Name</th>
+                    <th width="10%">Quantity</th>
+                    <th width="20%">Price</th>
+                    <th width="15%">Total</th>
+                    <th width="5%">Action</th>
+                </tr>
+                <?php
+                if (!empty($_SESSION["shopping_cart"])) {
+                    $total = 0;
+                    $quantity=0;
+                    foreach ($_SESSION["shopping_cart"] as $keys => $values) {
+                ?>
+                        <tr>
+                            <td><?php echo $values["item_name"]; ?></td>
+                            <td><?php echo $values["item_quantity"]; ?></td>
+                            <td>$ <?php echo $values["item_price"]; ?></td>
+                            <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
+                            <td><a href="porosit_online.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
+                        </tr>
+                    <?php
+                        $total = $total + ($values["item_quantity"] * $values["item_price"]);
+                        $quantity = $quantity + ($values["item_quantity"]);
+                    }
+                    ?>
                     <tr>
-                        <th>Personal Information</th>
+
+                        <td></td>
+                        <td><?php echo $quantity?></td>
+                        <td>Total</td>
+                        <td>$ <?php echo number_format($total, 2); ?></td>
+                        <td></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <p>
-                                <label class="f">Product Name</label><br />
-                                <input class="g required" type="text" placeholder="Product Name" id="prid" onblur="f1()"
-                                    name="name" />
-                                <p id="p1"></p>
-
-                                <script>
-                                    function f1() {
-                                        var name = document.getElementById("prid").value;
-                                        let pos = titles.indexOf(name);
-
-                                        document.getElementById("price").innerHTML = prices[pos];
-
-                                        var message;
-                                        message = document.getElementById("p1");
-                                        message.innerHTML = "";
-                                        try {
-                                            if (name == "") throw "Empty";
-                                            if (isNaN(name) == false) throw "Please write the product's name!";
-                                        }
-                                        catch (err) {
-                                            message.innerHTML = err;
-                                        }
-                                    }
-
-                                </script>
-
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <label>Price: </label><br />
-                                <p id="price"> </p>
-
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>
-                                <label class="f">Contact</label><br />
-                                <input class="g required" type="text" name="contact" placeholder="Your name" />
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <label>Gender </label><br />
-                                <input type="radio" name="type" value="1" checked>Male<br />
-                                <input type="radio" name="type" value="2">Female<br />
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>
-                                <label class="f">Mobile</label><br />
-                                <input class="g required" type="tel" name="mobile" placeholder="Phone number" value="+"
-                                    id="mobnm" onblur="f2()" />
-                                <p id="p2"></p>
-                                <script>
-                                    function f2() {
-                                        var number = document.getElementById("mobnm").value;
-
-                                        var message;
-                                        message = document.getElementById("p2");
-                                        message.innerHTML = "";
-                                        try {
-                                            if (number == "") throw "Empty";
-
-                                            if (isNaN(number)) throw "Please write a number";
-                                        }
-                                        catch (err) {
-                                            message.innerHTML = err;
-                                        }
-                                    }
-
-                                </script>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <label>Number</label><br />
-                                <input type="radio" name="type" value="1" checked>Mobile<br />
-                                <input type="radio" name="type" value="2">Fax<br />
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>
-                                <label class="f">Address</label><br />
-                                <input type="text" class="g required type=" name="address" placeholder="Your address"
-                                    id="addr" onblur="f3()" />
-                                <p id="p3"></p>
-                                <script>
-                                    function f3() {
-                                        var addr = document.getElementById("addr").value;
-
-                                        var message;
-                                        message = document.getElementById("p3");
-                                        message.innerHTML = "";
-                                        try {
-                                            if (addr == "") throw "Empty";
-
-                                            if (isNaN(addr) == false) throw "Please write your Address!";
-                                        }
-                                        catch (err) {
-                                            message.innerHTML = err;
-                                        }
-                                    }
-
-                                </script>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <label>Address:</label><br />
-                                <input type="radio" name="type" value="1" checked>Number<br />
-                                <input type="radio" name="type" value="2">Neighborhood<br />
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>
-                                <label class="f">Country</label><br />
-                                <input class="g required" type="text" name="country" list="country"
-                                    placeholder="Albania" />
-                                <datalist id="country">
-                                    <option>A</option>
-                                    <option>Albania</option>
-                                    <option>Afghanistan</option>
-                                    <option>Algeria</option>
-                                    <option>Andorra</option>
-                                    <option>Angola</option>
-                                    <option>Antigua and Barbuda</option>
-                                    <option>Argentina</option>
-                                    <option>Armenia</option>
-                                    <option>Australia</option>
-                                    <option>Austria</option>
-                                    <option>Azerbaijan</option>
-                                    <option>B</option>
-                                    <option>Bahrain</option>
-                                    <option>Bangladesh</option>
-                                    <option>Barbados</option>
-                                    <option>Belarus</option>
-                                    <option>Belgium</option>
-                                    <option>Belize</option>
-                                    <option>Benin</option>
-                                    <option>Bhutan</option>
-                                    <option>Bolivia</option>
-                                    <option>Bosnia and Herzegovina</option>
-                                    <option>Botswana</option>
-                                    <option>Brazil</option>
-                                    <option>Brunei</option>
-                                    <option>Bulgaria</option>
-                                    <option>Burkina Faso</option>
-                                    <option>Burundi</option>
-                                    <option>C</option>
-                                    <option>Cabo Verde</option>
-                                    <option>Cambodia</option>
-                                    <option>Cameroon</option>
-                                    <option>Canada</option>
-                                    <option>Central African Republic</option>
-                                    <option>Chile</option>
-                                    <option>Chad</option>
-                                    <option>D</option>
-                                    <option>Denmark</option>
-                                    <option>Djibouti</option>
-                                    <option>Dominica</option>
-                                    <option>Dominican Republic</option>
-                                    <option>E</option>
-                                    <option>East Timor (Timor-Leste)</option>
-                                    <option>Ecuador</option>
-                                    <option>Egypt</option>
-                                    <option>El Salvador</option>
-                                    <option>Equatorial Guinea</option>
-                                    <option>Eritrea</option>
-                                    <option>Estonia</option>
-                                    <option>F</option>
-                                    <option>Fiji</option>
-                                    <option>Finland</option>
-                                    <option>France</option>
-                                    <option>G</option>
-                                    <option>Gabon</option>
-                                    <option>The Gambia</option>
-                                    <option>Georgia</option>
-                                    <option>Germany</option>
-                                    <option>Ghana</option>
-                                    <option>Greece</option>
-                                    <option>Grenada</option>
-                                    <option>Guatemala</option>
-                                    <option>H</option>
-                                    <option>Haiti</option>
-                                    <option>Honduras</option>
-                                    <option>Hungary</option>
-                                    <option>I</option>
-                                    <option>Iceland</option>
-                                    <option>India</option>
-                                    <option>Indonesia</option>
-                                    <option>Iran</option>
-                                    <option>Iraq</option>
-                                    <option>Irelan</option>
-                                    <option>J</option>
-                                    <option>Jamaica</option>
-                                    <option>Japan</option>
-                                    <option>Jordan</option>
-                                    <option>K</option>
-                                    <option>Kazakhstan</option>
-                                    <option>Kenya</option>
-                                    <option>Kiribati</option>
-                                    <option>Korea, North</option>
-                                    <option>Korea, South</option>
-                                    <option>Kosovo</option>
-                                    <option>Kuwait</option>
-                                    <option>L</option>
-                                    <option>Laos</option>
-                                    <option>Latvia</option>
-                                    <option>Lebanon</option>
-                                    <option>Lesotho</option>
-                                    <option>Liberia</option>
-                                    <option>Libya</option>
-                                    <option>M</option>
-                                    <option>Madagascar</option>
-                                    <option>Malawi</option>
-                                    <option>Malaysia</option>
-                                    <option>Maldives</option>
-                                    <option>Mali</option>
-                                    <option>Malta</option>
-                                    <option>Marshall Islands</option>
-                                    <option>N</option>
-                                    <option>Namibia</option>
-                                    <option>Nauru</option>
-                                    <option>Nepal</option>
-                                    <option>Netherlands</option>
-                                    <option>New Zealand</option>
-                                    <option>Nicaragua</option>
-                                    <option>P</option>
-                                    <option>Pakistan</option>
-                                    <option>Palau</option>
-                                    <option>Panama</option>
-                                    <option>Papua New Guinea</option>
-                                    <option>Paraguay</option>
-                                    <option>Peru</option>
-                                    <option>Q</option>
-                                    <option>Qatar</option>
-                                    <option>R</option>
-                                    <option>Romania</option>
-                                    <option>Russia</option>
-                                    <option>Rwanda</option>
-                                    <option>S</option>
-                                    <option>Saint Kitts and Nevis</option>
-                                    <option>Saint Lucia</option>
-                                    <option>Saint Vincent and the Grenadines</option>
-                                    <option>Samoa</option>
-                                    <option>San Marino</option>
-                                    <option>Sao Tome and Principe</option>
-                                    <option>Saudi Arabia</option>
-                                    <option>Senegal</option>
-                                    <option>T</option>
-                                    <option>Taiwan</option>
-                                    <option>Tajikistan</option>
-                                    <option>Tanzania</option>
-                                    <option>Thailand</option>
-                                    <option>Togo</option>
-                                    <option>U</option>
-                                    <option>Uganda</option>
-                                    <option>Ukraine</option>
-                                    <option>United Arab Emirates</option>
-                                    <option>United Kingdom</option>
-                                    <option>V</option>
-                                    <option>Vanuatu</option>
-                                    <option>Vatican City</option>
-                                    <option>Venezuela</option>
-                                    <option>Vietnam</option>
-                                    <option>Y</option>
-                                    <option>Yemen</option>
-                                    <option>Z</option>
-                                    <option>Zambia</option>
-                                    <option>Zimbabwe</option>
-                                </datalist>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <label>Verification</label><br />
-                                <input type="radio" name="type" value="2">You<br />
-                                <input type="radio" name="type" value="2">Other<br />
-                            </p>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-
-                            <p>
-                                <label class="f">City</label><br />
-                                <input class="g required" type="text" name="city" placeholder="Your city" id="city"
-                                    onblur="f5()" />
-                                <p id="p5"></p>
-                                <script>
-                                    function f5() {
-                                        var city = document.getElementById("city").value;
-
-                                        var message;
-                                        message = document.getElementById("p5");
-                                        message.innerHTML = "";
-                                        try {
-                                            if (city == "") throw "Empty";
-
-                                            if (isNaN(city) == false) throw "Please write your City's name!";
-                                        }
-                                        catch (err) {
-                                            message.innerHTML = err;
-                                        }
-                                    }
-
-                                </script>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <label>Information</label><br />
-                                <input type="radio" name="type" value="1" checked>Center<br />
-                                <input type="radio" name="type" value="2">Suburb<br />
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>
-                                <label class="f">Zip</label><br />
-                                <input class="g required" type="text" name="zip" placeholder="Zip code" maxlength="5"
-                                    minlength="5" />
-                            </p>
-                        </td>
-                        <td>
-                            <div class="confirmi">
-                                <input type="submit" class="btn" value="Confirm" id="conf">
-                                <input type="reset" value="Clear Form" class="btn" style="margin-top: 20px;"
-                                    onclick="clickCounter()">
-                                <div id="result"></div>
-                            </div>
-
-                        </td>
-
-
-                    </tr>
-                </tbody>
+                <?php
+                }
+                ?>
             </table>
-        </form>
-
-    </section>
-
-
-
-
- <div class="anim" style="margin-left:43.5%">
-        <p>You mad cause u paid a lot?</p>
-        <button style=" font-size: 15px;
-        height: 25px;
-        border-radius: 5px;
-        background: #E4E2E2;
-        text-decoration: none;">Click me for a surprise ;)</button><br /><br />
-        <div id="animateee" style="height:25px;width:60px; text-align: center; word-wrap: break-word;">Well so did we! :p</div>
-        <br /><br />
+        </div>
     </div>
 
+    <form method="post"> 
+        <input id="btnform" type="submit" name="button"
+                value="Next"/> 
+    </form> 
 
-    </section>
+    <?php
+      
+        if(isset($_POST['button'])) { 
+           if($quantity==0){
+            echo '<script>alert("You must order something first!")</script>';
+            echo '<script>window.location="porosit_online.php"</script>';
+           } else{
+            echo '<script>window.location="onlineforma.php"</script>';
+           }
+        } 
+        
+    ?> 
+    
+
+		<style>
+			#btnform{
+				margin-left: 84%;
+				margin-bottom: 2%;
+				border-radius: 30px;
+				width: 80px;
+				height: 40px;          
+			}
+			</style>
+
+		
+
     <footer>
         <section class="foot">
             <div class="A">
@@ -639,67 +305,73 @@
 
 
                 <div id="d">
-						<h5>CONTACT US</h5>
-					<?php
-					$regex = "/^[a-zA-Z\s]+$/";
-					$regex1 = "/^[a-zA-Z\s\d\.]+$/";
-					$regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-					if(isset($_POST['submit'])){
-						if(preg_match($regex,$_POST['name'])){
-							$name = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['name'])){
-							$name = "<span style='color:red'>*Required</span>";
-						}
-						else{
-							$name = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex2,$_POST['email'])){
-							$email = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['email'])){
-							$email = "<span style='color:red'>*Required</span>";
-						}else {
-							$email =  "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['subject'])){
-							$subject = "<span style='color:green'>&#10004; Valid input</span>";
-						}else{
-							$subject = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['message'])){
-							$message = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['message'])){
-							$message = "<span>No input added</span>";
-						}
-						else{
-							$message = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-					}
-					?>
-						<form method="POST" action="">
-							<input type="text" name="name" placeholder="Name" class="f" /><?php if(isset($name)){echo $name;}?><br /><br /> 
-							<input type="text" name="email" placeholder="Email" class="f" /><?php if(isset($email)){echo $email;}?><br /><br />
-							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if(isset($subject)){echo $subject;}?><br /><br />
-							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if(isset($message)){echo $message;}?>
-							<br /><br />
-							<input id="submit" type="submit" name="submit">
-						</form>
-					</div>
-				</div>
-				<div>
-					<address>
-						<?php
-							$copy_date = "Copyright 2019";
-							$copy_date = preg_replace("([0-9]+)","2020",$copy_date);
-						?>
-						<p id="copyright">&copy; <?php echo $copy_date; ?> Fundamentals of Web Development
+                    <h5>CONTACT US</h5>
+                    <?php
+                    $regex = "/^[a-zA-Z\s]+$/";
+                    $regex1 = "/^[a-zA-Z\s\d\.]+$/";
+                    $regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
+                    if (isset($_POST['submit'])) {
+                        if (preg_match($regex, $_POST['name'])) {
+                            $name = "<span style='color:green'>&#10004; Valid input</span>";
+                        } else if (empty($_POST['name'])) {
+                            $name = "<span style='color:red'>*Required</span>";
+                        } else {
+                            $name = "<span style='color:red'>&#10006; Invalid input</span>";
+                        }
+                        if (preg_match($regex2, $_POST['email'])) {
+                            $email = "<span style='color:green'>&#10004; Valid input</span>";
+                        } else if (empty($_POST['email'])) {
+                            $email = "<span style='color:red'>*Required</span>";
+                        } else {
+                            $email =  "<span style='color:red'>&#10006; Invalid input</span>";
+                        }
+                        if (preg_match($regex1, $_POST['subject'])) {
+                            $subject = "<span style='color:green'>&#10004; Valid input</span>";
+                        } else {
+                            $subject = "<span style='color:red'>&#10006; Invalid input</span>";
+                        }
+                        if (preg_match($regex1, $_POST['message'])) {
+                            $message = "<span style='color:green'>&#10004; Valid input</span>";
+                        } else if (empty($_POST['message'])) {
+                            $message = "<span>No input added</span>";
+                        } else {
+                            $message = "<span style='color:red'>&#10006; Invalid input</span>";
+                        }
+                    }
+                    ?>
+                    <form method="POST" action="">
+                        <input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
+                                                                                            echo $name;
+                                                                                        } ?><br /><br />
+                        <input type="text" name="email" placeholder="Email" class="f" /><?php if (isset($email)) {
+                                                                                            echo $email;
+                                                                                        } ?><br /><br />
+                        <input type="type" name="subject" placeholder="Subject" class="f" /><?php if (isset($subject)) {
+                                                                                                echo $subject;
+                                                                                            } ?><br /><br />
+                        <textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if (isset($message)) {
+                                                                                                                    echo $message;
+                                                                                                                } ?>
+                        <br /><br />
+                        <input id="submit" type="submit" name="submit">
+                    </form>
+                </div>
+            </div>
+            <div>
+                <address>
+                    <?php
+                    $copy_date = "Copyright 2019";
+                    $copy_date = preg_replace("([0-9]+)", "2020", $copy_date);
+                    ?>
+                    <p id="copyright">&copy; <?php echo $copy_date; ?> Fundamentals of Web Development
 
-							.........email: <a href="mailto:yourhome@gmail.com ">yourhome@gmail.com</a><br />
-							
-						</p>
-						
-					</address>
-					
-				</div>
+                        .........email: <a href="mailto:yourhome@gmail.com ">yourhome@gmail.com</a><br />
+
+                    </p>
+
+                </address>
+
+            </div>
 
         </section>
 

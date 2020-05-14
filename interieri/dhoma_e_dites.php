@@ -71,27 +71,27 @@
 
 
         <section class="produktet_dh_dites">
-            <a href="dhoma_dites/dhd_produkti1.html">
+            <a href="dhoma_dites/dhd_produkti1.php">
                 <img id="dhd_produkti1" class="hoveer" src="../images/imgdhdites/dhd_produkti1.png"
                     style="width: 400px; height: 271px"></a>
 
-            <a href="dhoma_dites/dhd_produkti2.html">
+            <a href="dhoma_dites/dhd_produkti2.php">
                 <img id="dhd_produkti2" class="hoveer" src="../images/imgdhdites/dhd_produkti2.jpg"
                     style="width: 400px; height: 271px"></a>
 
-            <a href="dhoma_dites/dhd_produkti3.html">
+            <a href="dhoma_dites/dhd_produkti3.php">
                 <img id="dhd_produkti3" class="hoveer" src="../images/imgdhdites/dhd_produkti3.jpg"
                     style="width: 400px"></a>
 
-            <a href="dhoma_dites/dhd_produkti4.html">
+            <a href="dhoma_dites/dhd_produkti4.php">
                 <img id="dhd_produkti4" class="hoveer" src="../images/imgdhdites/dhd_produkti4.jpg"
                     style="width: 400px; height: 271px"></a>
 
-            <a href="dhoma_dites/dhd_produkti5.html">
+            <a href="dhoma_dites/dhd_produkti5.php">
                 <img id="dhd_produkti5" class="hoveer" src="../images/imgdhdites/dhd_produkti5.png"
                     style="width: 400px; height: 271px"></a>
 
-            <a href="dhoma_dites/dhd_produkti6.html">
+            <a href="dhoma_dites/dhd_produkti6.php">
                 <img id="dhd_produkti6" class="hoveer" src="../images/imgdhdites/dhd_produkti6.jpg"
                     style="width: 400px; height: 271px"></a>
 
@@ -118,18 +118,18 @@
                     <div id="b">
                         <h5 id="links">BEST PRODUCTS</h5>
                         <ol>
-                            <li><a href="dhoma_dites_produktet/dhd_produkti1.html">Natalia</a></li>
-                            <li><a href="dhoma_gjumit_produktet/dhgj_produkti3.html">Tommy Bahama</a></li>
-                            <li><a href="dhoma_dites_produktet\dhd_produkti6.html">Starmore</a></li>
-                            <li><a href="kuzhina_produktet\produkti3.html">Zobel and Co Kitchen</a></li>
-                            <li><a href="dhoma_gjumit_produktet\dhgj_produkti4.html">Wayfair</a></li>
-                            <li><a href="dhoma_punes_produktet\dhp_produkti3.html">Palma</a></li>
-                            <li><a href="kuzhina_produktet\produkti6.html">Bescope Kitchen</a></li>
-                            <li><a href="dhoma_punes_produktet\dhp_produkti5.html">Edelmar</a></li>
-                            <li><a href="dhoma_punes_produktet\dhp_produkti2.html">Oisin</a></li>
-                            <li><a href="dhoma_dites_produktet\dhd_produkti5.html">Wystfield</a></li>
-                            <li><a href="kuzhina_produktet\produkti4.html">Calgary Kitchen</a></li>
-                            <li><a href="dhoma_gjumit_produktet\dhgj_produkti5.html">Tuft and Needle</a></li>
+                            <li><a href="dhoma_dites_produktet/dhd_produkti1.php">Natalia</a></li>
+                            <li><a href="dhoma_gjumit_produktet/dhgj_produkti3.php">Tommy Bahama</a></li>
+                            <li><a href="dhoma_dites_produktet\dhd_produkti6.php">Starmore</a></li>
+                            <li><a href="kuzhina_produktet\produkti3.php">Zobel and Co Kitchen</a></li>
+                            <li><a href="dhoma_gjumit_produktet\dhgj_produkti4.php">Wayfair</a></li>
+                            <li><a href="dhoma_punes_produktet\dhp_produkti3.php">Palma</a></li>
+                            <li><a href="kuzhina_produktet\produkti6.php">Bescope Kitchen</a></li>
+                            <li><a href="dhoma_punes_produktet\dhp_produkti5.php">Edelmar</a></li>
+                            <li><a href="dhoma_punes_produktet\dhp_produkti2.php">Oisin</a></li>
+                            <li><a href="dhoma_dites_produktet\dhd_produkti5.php">Wystfield</a></li>
+                            <li><a href="kuzhina_produktet\produkti4.php">Calgary Kitchen</a></li>
+                            <li><a href="dhoma_gjumit_produktet\dhgj_produkti5.php">Tuft and Needle</a></li>
         
                         </ol></br>
         
