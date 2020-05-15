@@ -3,7 +3,7 @@
 <html>
    <head>
       <title>Registration Page</title>
-      <link rel="stylesheet" type="text/css" href="css/formaCss.css">
+      <link rel="stylesheet" type="text/css" href="lib/formaCss.css">
    </head>
    <body>
       <div class="header">
@@ -18,7 +18,7 @@
          <div class="input-group">
             <label>Email</label>
             <input type="email" name="email" value="<?php echo $email; ?>">
-         </div>
+</div>
          <div class="input-group">
             <label>Password</label>
             <input type="password" name="password1">

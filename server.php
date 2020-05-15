@@ -1,11 +1,13 @@
 <?php
+include('sendEmail.php');
+
 session_start();
 
 $username = "";
 $email = "";
 $errors = array();
 
-$db = mysqli_connect('localhost', 'root', '', 'register');
+$db = mysqli_connect("localhost", "root", "php123!", "phpconnection");
 
 if (isset($_POST['register']))
 {
@@ -57,6 +59,7 @@ if (isset($_POST['register']))
         mysqli_query($db, $query);
         $_SESSION['username'] = $username;
         header('location: home.php');
+        sendEmail($username, $email);
     }
 }
 if (isset($_POST['login']))

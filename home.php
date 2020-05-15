@@ -5,17 +5,13 @@
    	$_SESSION['msg'] = "You must log in first";
    	header('location: login.php');
    }
-   if (isset($_GET['logout'])) {
-	session_destroy();
-	unset($_SESSION['username']);
-	header("location: login.php");
-}
+
    ?>
 <!DOCTYPE html>
 <html>
    <head>
       <title>Home</title>
-      <link rel="stylesheet" type="text/css" href="css/formaCss.css">
+      <link rel="stylesheet" type="text/css" href="/formaCss.css">
       <style>
          .content{
          width:500px;
@@ -29,8 +25,7 @@
    <body>
       <div class="content">
          <?php  if (isset($_SESSION['username'])) : ?>
-         <p>Welcome <strong><?php echo $_SESSION['username']; ?></strong> click here to continue to our page <a href="index.php">Your Home</a></p>
-		 <p> <a href="home.php?logout='1'">Logout</a> </p>
+         <p>Hello <strong><?php echo $_SESSION['username']; ?></strong>! Check your email for more details.
     <?php endif ?>
       </div>
    </body>
