@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html manifest="home.appcache">
 
 <head en="lang">
@@ -20,7 +20,6 @@
 		.fadeBody {
 			display: none;
 		}
-
 	</style>
 
 	<div id="dialogoverlay"></div>
@@ -31,16 +30,11 @@
 		<nav>
 			<div id="smedialinks">
 				<ul>
-					<li><a href="https://www.linkedin.com/"><abbr title="Linkedin"><img src="images/linkedin.png"
-									alt="Link."></abbr></a></li>
-					<li><a href="https://www.twitter.com/"><abbr title="Twitter"><img src="images/twitter.png"
-									alt="Tweet"></abbr></a></li>
-					<li><a href="https://www.pinterest.com/"><abbr title="Pinterest"><img src="images/pinterest.png"
-									alt="Pint"></abbr></a></li>
-					<li><a href="https://plus.google.com/"><abbr title="+Google"><img src="images/googleplus.png"
-									alt="+"></abbr></a></li>
-					<li><a href="https://www.facebook.com/"><abbr title="Facebook"><img src="images/facebook.png"
-									alt="Fb"></abbr></a></li>
+					<li><a href="https://www.linkedin.com/"><abbr title="Linkedin"><img src="images/linkedin.png" alt="Link."></abbr></a></li>
+					<li><a href="https://www.twitter.com/"><abbr title="Twitter"><img src="images/twitter.png" alt="Tweet"></abbr></a></li>
+					<li><a href="https://www.pinterest.com/"><abbr title="Pinterest"><img src="images/pinterest.png" alt="Pint"></abbr></a></li>
+					<li><a href="https://plus.google.com/"><abbr title="+Google"><img src="images/googleplus.png" alt="+"></abbr></a></li>
+					<li><a href="https://www.facebook.com/"><abbr title="Facebook"><img src="images/facebook.png" alt="Fb"></abbr></a></li>
 				</ul>
 			</div>
 
@@ -65,7 +59,6 @@
 				</div>
 				<a href="tips_and_tricks.php">Tips and tricks</a>
 				<a href="porosit_online.php">Online order</a>
-				<a href="apliko_per_pune.php">Apply for job</a>
 				<a href="rreth_nesh.php">About us</a>
 			</div>
 		</nav>
@@ -132,12 +125,12 @@
 				<span class="dot" onclick='currentSlide(4)'></span>
 			</div>
 		</section>
-		<div>	
-				<button style="margin-left:40%"><a href="includes/aboutUsForma.php">Quick info about us</a></button>
-				
-			</div>
+		<div>
+			<button style="margin-left:40%"><a href="includes/aboutUsForma.php">Quick info about us</a></button>
+
+		</div>
 		<section class="pjesa2">
-		
+
 			<div class="wpsau">
 				<h2 class="maintitle"> What People Say About Us</h2>
 				<p class="src"><img src="images\qmarks.png" /> Tommy Tanker - Customer</p>
@@ -176,8 +169,7 @@
 
 			<div class="meetTeam">
 				<h2 class="maintitle"> Meet The Team</h2>
-				<p class="src1"><img class="fig1" src="images/imgau/ensarja2.jpeg"
-						style="width: 110px; height: 110px;" /> Ensare Islami</p>
+				<p class="src1"><img class="fig1" src="images/imgau/ensarja2.jpeg" style="width: 110px; height: 110px;" /> Ensare Islami</p>
 				<p id="pershkrimi"> Ensare is our great leader that we all love and respect.
 					She writes the cleanest code you'll ever see and even though we differ in our religious views
 					we still have a lot of fun together. Also, DO NOT call her 'CALE'! <br>
@@ -243,16 +235,16 @@
 
 		<button id="gg"><a href="#top">Top</a></button>
 		<style>
-			#gg{
+			#gg {
 				margin-left: 90%;
 				margin-bottom: 2%;
 				border-radius: 30px;
 				width: 80px;
-				height: 40px;          
+				height: 40px;
 			}
-			</style>
+		</style>
 
-		
+
 		<footer>
 			<section class="foot">
 				<div class="A">
@@ -319,46 +311,52 @@
 
 					<div id="d">
 						<h5>CONTACT US</h5>
-					<?php
-					$regex = "/^[a-zA-Z\s]+$/";
-					$regex1 = "/^[a-zA-Z\s\d\.]+$/";
-					$regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-					if(isset($_POST['submit'])){
-						if(preg_match($regex,$_POST['name'])){
-							$name = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['name'])){
-							$name = "<span style='color:red'>*Required</span>";
+						<?php
+						$regex = "/^[a-zA-Z\s]+$/";
+						$regex1 = "/^[a-zA-Z\s\d\.]+$/";
+						$regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
+						if (isset($_POST['submit'])) {
+							if (preg_match($regex, $_POST['name'])) {
+								$name = "<span style='color:green'>&#10004; Valid input</span>";
+							} else if (empty($_POST['name'])) {
+								$name = "<span style='color:red'>*Required</span>";
+							} else {
+								$name = "<span style='color:red'>&#10006; Invalid input</span>";
+							}
+							if (preg_match($regex2, $_POST['email'])) {
+								$email = "<span style='color:green'>&#10004; Valid input</span>";
+							} else if (empty($_POST['email'])) {
+								$email = "<span style='color:red'>*Required</span>";
+							} else {
+								$email =  "<span style='color:red'>&#10006; Invalid input</span>";
+							}
+							if (preg_match($regex1, $_POST['subject'])) {
+								$subject = "<span style='color:green'>&#10004; Valid input</span>";
+							} else {
+								$subject = "<span style='color:red'>&#10006; Invalid input</span>";
+							}
+							if (preg_match($regex1, $_POST['message'])) {
+								$message = "<span style='color:green'>&#10004; Valid input</span>";
+							} else if (empty($_POST['message'])) {
+								$message = "<span>No input added</span>";
+							} else {
+								$message = "<span style='color:red'>&#10006; Invalid input</span>";
+							}
 						}
-						else{
-							$name = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex2,$_POST['email'])){
-							$email = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['email'])){
-							$email = "<span style='color:red'>*Required</span>";
-						}else {
-							$email =  "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['subject'])){
-							$subject = "<span style='color:green'>&#10004; Valid input</span>";
-						}else{
-							$subject = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['message'])){
-							$message = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['message'])){
-							$message = "<span>No input added</span>";
-						}
-						else{
-							$message = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-					}
-					?>
+						?>
 						<form method="POST" action="">
-							<input type="text" name="name" placeholder="Name" class="f" /><?php if(isset($name)){echo $name;}?><br /><br /> 
-							<input type="text" name="email" placeholder="Email" class="f" /><?php if(isset($email)){echo $email;}?><br /><br />
-							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if(isset($subject)){echo $subject;}?><br /><br />
-							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if(isset($message)){echo $message;}?>
+							<input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
+																								echo $name;
+																							} ?><br /><br />
+							<input type="text" name="email" placeholder="Email" class="f" /><?php if (isset($email)) {
+																								echo $email;
+																							} ?><br /><br />
+							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if (isset($subject)) {
+																									echo $subject;
+																								} ?><br /><br />
+							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if (isset($message)) {
+																														echo $message;
+																													} ?>
 							<br /><br />
 							<input id="submit" type="submit" name="submit">
 						</form>
@@ -367,21 +365,21 @@
 				<div>
 					<address>
 						<?php
-							$copy_date = "Copyright 2019";
-							$copy_date = preg_replace("([0-9]+)","2020",$copy_date);
+						$copy_date = "Copyright 2019";
+						$copy_date = preg_replace("([0-9]+)", "2020", $copy_date);
 						?>
 						<p id="copyright">&copy; <?php echo $copy_date; ?> Fundamentals of Web Development
 
 							.........email: <a href="mailto:yourhome@gmail.com ">yourhome@gmail.com</a><br />
-							
+
 						</p>
-						
+
 					</address>
-					
+
 				</div>
 
 			</section>
-			
+
 		</footer>
 	</main>
 	<script src="javascript/carousel.js"></script>

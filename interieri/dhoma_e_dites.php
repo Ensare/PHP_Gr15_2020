@@ -51,7 +51,6 @@
                 </div>
                 <a href="../tips_and_tricks.php">Tips and tricks</a>
                 <a href="../porosit_online.php">Online order</a>
-                <a href="../apliko_per_pune.php">Apply for job</a>
                 <a href="../rreth_nesh.php">About us</a>
             </div>
         </nav>

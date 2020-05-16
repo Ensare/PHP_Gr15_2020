@@ -86,7 +86,6 @@
                 </div>
                 <a href="../tips_and_tricks.php">Tips and tricks</a>
                 <a href="../porosit_online.php">Online order</a>
-                <a href="../apliko_per_pune.php">Apply for job</a>
                 <a href="../rreth_nesh.php">About us</a>
             </div>
         </nav>
@@ -129,18 +128,7 @@
         </div>
 
         </div>
-        <p id="det3"></p>
-
-        <p id="det4"></p>
-        <script type="text/javascript">
-            var q = myFunction3(1900, 86);
-
-            function myFunction3(w, v) {
-                return w + v;
-            }
-            document.getElementById("det4").innerHTML = "With you " + q + " years.";
-            document.getElementById("det4").style.textAlign = "center";
-        </script>
+      
 
         <footer>
             <section class="foot">

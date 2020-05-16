@@ -1,13 +1,6 @@
-
 $(document).ready(function () {
     $(".fadeBody").fadeIn(1000);
 
-    $("input").focus(function () {
-        $(this).css("background-color", "#752424");
-    });
-    $("input").blur(function () {
-        $(this).css("background-color", "#ADADAD");
-    });
     $("textarea").focus(function () {
         $(this).css("background-color", "#752424");
     });
@@ -27,6 +20,7 @@ $(document).ready(function () {
         $(this).css("background-color", "#ADADAD");
     });
 });
+
 
 
 $(document).ready(function () {
