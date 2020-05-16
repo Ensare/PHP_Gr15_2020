@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    Konfirmimi.render("Want to see the latest discounts?")
+	setTimeout(function() {alert('msg');}, 10000);
+    Konfirmimi.render("Do you want to got it?")
 });
-
 
 function customConf(){
 	this.render = function(dialog){
@@ -15,7 +15,7 @@ function customConf(){
 	    dialogbox.style.top = "100px";
         dialogbox.style.display = "block";
         
-		document.getElementById('dialogboxhead').innerHTML='THIS YEARS\' SPECIAL OFFERS!';
+		document.getElementById('dialogboxhead').innerHTML='Our Cookie Policy';
 	    document.getElementById('dialogboxbody').innerHTML = dialog;
         document.getElementById('dialogboxfoot').innerHTML = 
         '<button onclick="Konfirmimi.yes()">Yes</button> <button onclick="Konfirmimi.no()">No</button>';
@@ -25,7 +25,7 @@ function customConf(){
 		document.getElementById('dialogoverlay').style.display = "none";
 	}
 	this.yes = function(){
-		window.location.href="zbritjet.html"
+		window.location.href="zbritjet.php"
 		document.getElementById('dialogbox').style.display = "none";
 		document.getElementById('dialogoverlay').style.display = "none";
 	}
