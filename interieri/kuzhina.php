@@ -11,7 +11,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
-
+    <script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
 </head>
 
 <body>
@@ -36,8 +53,9 @@
             </div>
 
             <div id="search">
-                <form method="get" action="">
-                    <input type="search" name="Search">
+            <form method="get" action="">
+                <input type="text" size="20" onkeyup="showResult(this.value)">
+                <div id="livesearch"></div>
                 </form>
             </div>
 
@@ -57,6 +75,7 @@
                 </div>
                 <a href="../tips_and_tricks.php">Tips and tricks</a>
                 <a href="../porosit_online.php">Online order</a>
+                <a href="../apliko_per_pune.php">Apply for job</a>
                 <a href="../rreth_nesh.php">About us</a>
             </div>
         </nav>

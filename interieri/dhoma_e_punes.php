@@ -11,7 +11,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
-
+    <script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
 </head>
 
 <style>
@@ -65,8 +82,9 @@
             </div>
 
             <div id="search">
-                <form method="get" action="">
-                    <input type="search" name="Search">
+            <form method="get" action="">
+                <input type="text" size="20" onkeyup="showResult(this.value)">
+                <div id="livesearch"></div>
                 </form>
             </div>
 
@@ -86,6 +104,7 @@
                 </div>
                 <a href="../tips_and_tricks.php">Tips and tricks</a>
                 <a href="../porosit_online.php">Online order</a>
+                <a href="../apliko_per_pune.php">Apply for job</a>
                 <a href="../rreth_nesh.php">About us</a>
             </div>
         </nav>
@@ -128,7 +147,18 @@
         </div>
 
         </div>
-      
+        <p id="det3"></p>
+
+        <p id="det4"></p>
+        <script type="text/javascript">
+            var q = myFunction3(1900, 86);
+
+            function myFunction3(w, v) {
+                return w + v;
+            }
+            document.getElementById("det4").innerHTML = "With you " + q + " years.";
+            document.getElementById("det4").style.textAlign = "center";
+        </script>
 
         <footer>
             <section class="foot">
