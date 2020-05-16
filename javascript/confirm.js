@@ -1,7 +1,9 @@
 $(document).ready(function(){
-	setTimeout(function() {alert('msg');}, 10000);
-    Konfirmimi.render("Do you want to got it?")
-});
+	setTimeout(function(){
+		Konfirmimi.render("Do you want to got it?")
+ 
+	},10000);
+ });
 
 function customConf(){
 	this.render = function(dialog){
