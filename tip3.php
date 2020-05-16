@@ -1,3 +1,13 @@
+<?php
+	if(isset($_POST['submit'])){
+		session_start(); // Start the session
+
+		$_SESSION['name'] = htmlentities($_POST['name']);
+		$_SESSION['email'] = htmlentities($_POST['email']);
+
+		header('Location: session2.php');
+	}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,6 +53,42 @@
         /* Standard syntax */
     }
 </style>
+<script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
+<script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
 </head>
 
 <body>
@@ -61,8 +107,9 @@
             </div>
 
             <div id="search">
-                <form method="get" action="">
-                    <input type="search" name="Search">
+            <form method="get" action="">
+                <input type="text" size="20" onkeyup="showResult(this.value)">
+                <div id="livesearch"></div>
                 </form>
             </div>
 
@@ -81,6 +128,7 @@
                 </div>
                 <a href="tips_and_tricks.php">Tips and tricks</a>
                 <a href="porosit_online.php">Online order</a>
+                <a href="apliko_per_pune.php">Apply for job</a>
                 <a href="rreth_nesh.php">About us</a>
             </div>
         </nav>
@@ -140,25 +188,25 @@
                         and hardworking crew, we have expanded
                         our store to three new locations,
                         bringing ourselves closer to the customers!
-                        <a href="rreth_nesh.php">Read More>></a>
+                        <a href="rreth_nesh.html">Read More>></a>
                     </p>
                 </div>
 
                 <div id="b">
                     <h5 id="links">BEST PRODUCTS</h5>
                     <ol>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.php">Natalia</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.php">Tommy Bahama</a></li>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.php">Starmore</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti3.php">Zobel and Co Kitchen</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.php">Wayfair</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.php">Palma</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti6.php">Bescope Kitchen</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.php">Edelmar</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.php">Oisin</a></li>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.php">Wystfield</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti4.php">Calgary Kitchen</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.php">Tuft and Needle</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.html">Natalia</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.html">Tommy Bahama</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.html">Starmore</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti3.html">Zobel and Co Kitchen</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.html">Wayfair</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.html">Palma</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti6.html">Bescope Kitchen</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.html">Edelmar</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.html">Oisin</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.html">Wystfield</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti4.html">Calgary Kitchen</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.html">Tuft and Needle</a></li>
 
                     </ol></br>
 
@@ -228,7 +276,7 @@
 						}
 					}
 					?>
-						<form method="POST" action="">
+						<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 							<input type="text" name="name" placeholder="Name" class="f" /><?php if(isset($name)){echo $name;}?><br /><br /> 
 							<input type="text" name="email" placeholder="Email" class="f" /><?php if(isset($email)){echo $email;}?><br /><br />
 							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if(isset($subject)){echo $subject;}?><br /><br />

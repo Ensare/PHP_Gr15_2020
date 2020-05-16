@@ -32,12 +32,27 @@ setcookie ("Plus2netCookie", "", time() - 3600);
     font-face:Verdana;
     size:2;
 }
+p
+{
+    text-align:center;
+    font-family: Alegreya Sans SC; 
+    font-size:25px;
+    padding: 0 2px 0 20px;
+    padding-top: 20px;
+    margin: 20px 59px 20px 20px;
+
+}
+a 
+{
+    font-size: 25px;
+    margin: 200px 20px;
+}
 </style>
 
 <p id=paragrafi>Cookie is removed. You can check this by going to Check the cookie page. Checking the status of the cookie. </p>
 <br><br><br>
-<center><font face='Verdana' size='2'><a href=cookies_t1.php>Start a new cookie </a> | <a href=cookies_t2.php>Check the cookie </a> | <a href=cookies_t3.php>Remove the cookie </a>
-</font></center>
+<p><a href=cookies_t1.php>Start a new cookie </a> | <a href=cookies_t2.php>Check the cookie </a> | <a href=cookies_t3.php>Remove the cookie </a>
+</p>
 </body>
 
 </html>

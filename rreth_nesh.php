@@ -12,6 +12,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyCMqFg25fYARDPgH7_Fcqt60GzMROprDEA&sensor=true"></script>
+    <script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
     <style>
         #shortquote {
             display: none;
@@ -70,8 +88,9 @@
             </div>
 
             <div id="search">
-                <form method="get" action="">
-                    <input type="search" name="Search">
+            <form method="get" action="">
+                <input type="text" size="20" onkeyup="showResult(this.value)">
+                <div id="livesearch"></div>
                 </form>
             </div>
 
@@ -111,10 +130,15 @@
 
         <div id="desc">
             <h2>About us</h2>
-
-            <p>Your Home is a furniture store that operates since the 80s.
-                With our bold and hardworking crew, we have expanded our store to three new locations,
-                bringing ourselves closer to the customers!<br>
+            <?php
+             $number = 80;
+               $str = "bold";
+              printf("Your Home is a furniture store that operates since the %us With our %s and hardworking crew, we have expanded our store to three new locations,
+              bringing ourselves closer to the customers! .",$number,$str);
+            ?>
+            <p> 
+                
+                Only <?php echo strlen("Your Home");?> characters.
                 So without further ado...
             </p>
             <div id="btnmt">
@@ -124,7 +148,7 @@
 
         <div class="meettheTeam">
             <div id='ensarja'>
-                <p class="src1"><img class="mtfig" src="images/imgau/ensarja.jpeg" /> Ensare Islami</p>
+                <p class="src1"><img class="mtfig" src="images/imgau/ensarja.jpeg" /> <?php echo str_replace("mbiemri","Islami","Ensare mbiemri");?></p>
                 <p id="pershkrimi"> Ensare is our great leader that we all love and respect.
                     She writes the cleanest code you'll ever see and even though we differ in our religious views
                     we still have a lot of fun together.</p>
@@ -133,7 +157,7 @@
             </div>
             <div id='alina'>
 
-                <p class="src1"><img class="mtfig" src="images/imgau/alina.jpg" /> Alina Fazliu</p>
+                <p class="src1"><img class="mtfig" src="images/imgau/alina.jpg" /> <?php echo str_replace("mbiemri","Fazliu","Alina mbiemri");?></p>
                 <p id="pershkrimi">Alina is our mom manager. She keeps us all together, however she just isn't the
                     brightest bulb in the box. While working she loves calling herself "Alineee, budalliceeee"
                     whenever she
@@ -141,14 +165,14 @@
                     know what she's doing. And that's a lot.</p>
             </div>
             <div id='arita'>
-                <p class="src1"><img class="mtfig" src="images/imgau/arita.jpg" /> Arita Alidemaj</p>
+                <p class="src1"><img class="mtfig" src="images/imgau/arita.jpg" /> <?php echo str_replace("mbiemri","Alidemaj","Arita mbiemri");?></p>
                 <p id="pershkrimi">Arita is a young, hardowrking woman, who we like to call 'Vogelushe' due to her
                     babyface and height. However, do not let that fool you! She is three times squared the
                     ordinary human and works more than her physique lets you know.</p>
 
             </div>
             <div id='argjenta'>
-                <p class="src1"><img class="mtfig" src="images/imgau/argjenta.jpg" /> Argjenta Gashi</p>
+                <p class="src1"><img class="mtfig" src="images/imgau/argjenta.jpg" /><?php echo str_replace("mbiemri","Gashi","Argjenta mbiemri");?> </p>
                 <p id="pershkrimi">Argjenta is the joy of our team. Whenever we feel down or bad she is there with
                     her
                     infectious laughter, and you'll feel better just by hearing her laugh! She keeps the group

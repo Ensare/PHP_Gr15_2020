@@ -44,7 +44,6 @@ a:active {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>PHP Sessions</title>
 </head>
 <body>
 <h5>Thank you <?php echo $name; ?>, You have subscribed with the email <?php echo $email; ?></h5>

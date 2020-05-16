@@ -15,23 +15,40 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
-<title>(Type a title for your page here)</title>
+<title></title>
+<style>
+p
+{
+    text-align:center;
+    font-family: Alegreya Sans SC; 
+    font-size:25px;
+    padding: 0 2px 0 20px;
+    padding-top: 20px;
+    margin: 20px 59px 20px 20px;
+
+}
+a 
+{
+    font-size: 25px;
+    margin: 200px 20px;
+}
+</style>
 </head>
 
 <body>
 
 <?Php
 if(strlen(@$_COOKIE["Plus2netCookie"]) > 0 ){
-echo "Welcome  " .$_COOKIE["Plus2netCookie"];
+echo "<p> Welcome </p>  " .$_COOKIE["Plus2netCookie"];
 
-echo "<br><br><font face='Verdana'; size='5'; text-align:center; > Cookie is available. </font>";
+echo "<br><br><p> Cookie is available. </p>";
 }else{
-echo " No Cookie is set ";
+echo "<p> No Cookie is set</p> ";
 }
 ?>
 <br><br><br>
-<center><font face='Verdana' size='2'><a href=cookies_t1.php>Start a new cookie</a> | <a href=cookies_t2.php>Check the cookie </a> | <a href=cookies_t3.php>Remove the cookie </a>
-</font></center>
+<p style="text-align:center;  "><a href=cookies_t1.php>Start a new cookie</a> | <a href=cookies_t2.php>Check the cookie </a> | <a href=cookies_t3.php>Remove the cookie </a>
+</p>
 
 </body>
 

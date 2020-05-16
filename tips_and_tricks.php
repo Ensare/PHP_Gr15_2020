@@ -47,6 +47,24 @@
             transform:rotateY(150deg);
         }
     </style>
+     <script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
 </head>
 
 <body>
@@ -71,8 +89,9 @@
 			</div>
 
             <div id="search">
-                <form method="get" action="">
-                    <input type="search" name="Search">
+            <form method="get" action="">
+                <input type="text" size="20" onkeyup="showResult(this.value)">
+                <div id="livesearch"></div>
                 </form>
             </div>
 
@@ -109,7 +128,7 @@
                     those who can't do
                     anything
                     without consulting...
-                    <a href="tip1.html" target="_blank">Read more</a></p>
+                    <a href="tip1.php" target="_blank">Read more</a></p>
             </div>
             <div id="tip2">
                 <img class="rot" src="images/imgtat/id2.jpg" target="_blank">
@@ -118,7 +137,7 @@
                     halls—while staying true to
                     your
                     budget and style...
-                    <a href="tip2.html" target="_blank">Read more</a>
+                    <a href="tip2.php" target="_blank">Read more</a>
                 </p>
             </div>
             <div id="tip3">
@@ -129,7 +148,7 @@
                     also
                     be an
                     extension of your personality. While design ideas come and go, there are a few...
-                    <a href="tip3.html" target="_blank">Read more</a>
+                    <a href="tip3.php" target="_blank">Read more</a>
                 </p>
             </div>
 
@@ -140,7 +159,7 @@
                     interior design,
                     there’s
                     more
-                    to this widely embraced concept than most of us think.<a href="tip4.html" target="_blank">Read more</a></p>
+                    to this widely embraced concept than most of us think.<a href="tip4.php" target="_blank">Read more</a></p>
             </div>
 
             <div id="tip5">
@@ -151,7 +170,7 @@
                     following
                     ideas
                     share tricks and ideas for reinvigorating your décor with a rainbow of hues.
-                    <a href="tip5.html">Read more</a></p>
+                    <a href="tip5.php">Read more</a></p>
             </div>
             <div id="tip6">
                 <img class="rot1" src="images/imgtat/id5.jpg">
@@ -159,7 +178,7 @@
                 <p style="width: 300px">A living room needs to be welcoming for you and your guests. More people will be
                     able to visualize it
                     as
-                    their own. Checkout 25 best modern living room designs<a href="tip6.html" target="_blank">Read more</a></p>
+                    their own. Checkout 25 best modern living room designs<a href="tip6.php" target="_blank">Read more</a></p>
             </div>
         </section>
 

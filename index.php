@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html manifest="home.appcache">
 
 <head en="lang">
@@ -11,7 +11,24 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="javascript/jquery-3.4.1.min.js"></script>
-
+	<script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
 </head>
 
 <body class="fadeBody">
@@ -20,6 +37,7 @@
 		.fadeBody {
 			display: none;
 		}
+
 	</style>
 
 	<div id="dialogoverlay"></div>
@@ -30,19 +48,25 @@
 		<nav>
 			<div id="smedialinks">
 				<ul>
-					<li><a href="https://www.linkedin.com/"><abbr title="Linkedin"><img src="images/linkedin.png" alt="Link."></abbr></a></li>
-					<li><a href="https://www.twitter.com/"><abbr title="Twitter"><img src="images/twitter.png" alt="Tweet"></abbr></a></li>
-					<li><a href="https://www.pinterest.com/"><abbr title="Pinterest"><img src="images/pinterest.png" alt="Pint"></abbr></a></li>
-					<li><a href="https://plus.google.com/"><abbr title="+Google"><img src="images/googleplus.png" alt="+"></abbr></a></li>
-					<li><a href="https://www.facebook.com/"><abbr title="Facebook"><img src="images/facebook.png" alt="Fb"></abbr></a></li>
+					<li><a href="https://www.linkedin.com/"><abbr title="Linkedin"><img src="images/linkedin.png"
+									alt="Link."></abbr></a></li>
+					<li><a href="https://www.twitter.com/"><abbr title="Twitter"><img src="images/twitter.png"
+									alt="Tweet"></abbr></a></li>
+					<li><a href="https://www.pinterest.com/"><abbr title="Pinterest"><img src="images/pinterest.png"
+									alt="Pint"></abbr></a></li>
+					<li><a href="https://plus.google.com/"><abbr title="+Google"><img src="images/googleplus.png"
+									alt="+"></abbr></a></li>
+					<li><a href="https://www.facebook.com/"><abbr title="Facebook"><img src="images/facebook.png"
+									alt="Fb"></abbr></a></li>
 				</ul>
 			</div>
 
 			<div id="search">
-				<form method="get" action="">
-					<input type="search" name="Search">
-				</form>
-			</div>
+            <form method="get" action="">
+                <input type="text" size="20" onkeyup="showResult(this.value)">
+                <div id="livesearch"></div>
+                </form>
+            </div>
 
 			<div class="navbar">
 				<a href="index.php">Home</a>
@@ -59,6 +83,7 @@
 				</div>
 				<a href="tips_and_tricks.php">Tips and tricks</a>
 				<a href="porosit_online.php">Online order</a>
+				<a href="apliko_per_pune.php">Apply for job</a>
 				<a href="rreth_nesh.php">About us</a>
 			</div>
 		</nav>
@@ -125,14 +150,15 @@
 				<span class="dot" onclick='currentSlide(4)'></span>
 			</div>
 		</section>
-		<div>
-			<button style="margin-left:40%"><a href="includes/aboutUsForma.php">Quick info about us</a></button>
-
-		</div>
+		<div>	
+				<button style="margin-left:40%"><a href="includes/aboutUsForma.php">Quick info about us</a></button>
+				
+			</div>
 		<section class="pjesa2">
-
+		
 			<div class="wpsau">
-				<h2 class="maintitle"> What People Say About Us</h2>
+			<h2 class="maintitle"> <?php  $arr = array('What People ','Say','Beautiful',' About Us!');
+                echo implode(" ",$arr); ?></h2>
 				<p class="src"><img src="images\qmarks.png" /> Tommy Tanker - Customer</p>
 				<p>I am really happy with the quality of the products. Not only are they durable, but they are
 					eco-friendly as well. They recycle everything and you can even send your old furniture there.
@@ -168,8 +194,10 @@
 			</div>
 
 			<div class="meetTeam">
-				<h2 class="maintitle"> Meet The Team</h2>
-				<p class="src1"><img class="fig1" src="images/imgau/ensarja2.jpeg" style="width: 110px; height: 110px;" /> Ensare Islami</p>
+			<h2 class="maintitle"> <?php $str = "Meet The Team";
+                  print_r (explode(" ",$str)); ?></h2>
+				<p class="src1"><img class="fig1" src="images/imgau/ensarja2.jpeg"
+						style="width: 110px; height: 110px;" /> <?php echo substr("Zonja Ensare Islami",6); ?></p>
 				<p id="pershkrimi"> Ensare is our great leader that we all love and respect.
 					She writes the cleanest code you'll ever see and even though we differ in our religious views
 					we still have a lot of fun together. Also, DO NOT call her 'CALE'! <br>
@@ -177,7 +205,7 @@
 
 				<br />
 
-				<p class="src1"><img class="fig1" src="images/imgau/arita2.jpg" /> Arita Alidemaj</p>
+				<p class="src1"><img class="fig1" src="images/imgau/arita2.jpg" /> <?php echo substr("Zonja Arita Alidemaj",6); ?></p>
 				<p id="pershkrimi">Arita is a young, hardworking woman, who we like to call 'Vogelushe' due to her
 					babyface and height. However, she is three times squared the ordinary human and works more than
 					you'd think possible. <br>
@@ -186,7 +214,7 @@
 
 				<br />
 
-				<p class="src1"><img class="fig1" src="images/imgau/argjenta2.jpg" /> Argjenta Gashi</p>
+				<p class="src1"><img class="fig1" src="images/imgau/argjenta2.jpg" /><?php echo substr("Zonja Argjenta Gashi",6); ?> </p>
 				<p id="pershkrimi">Argjenta is the joy of our team. Whenever we feel down or bad she is there with her
 					infectious laughter, and you'll feel better just by hearing her laugh! She keeps the group updated
 					and doesn't let us worry for the stupid things that we love worrying about. <br>
@@ -197,7 +225,7 @@
 				<br />
 
 				<p class="src1"><img class="fig1" src="images/imgau/alina2.jpg" style="width: 110px; height: 110px; " />
-					Alina Fazliu</p>
+				<?php echo substr("Zonja Alina Fazliu",6); ?></p>
 				<p id="pershkrimi">Alina is our mom manager. She keeps us all together,
 					however she just isn't the
 					brightest bulb in the box. She loves calling herself "Alineee, budalliceeee" whenever she doesn't
@@ -235,16 +263,16 @@
 
 		<button id="gg"><a href="#top">Top</a></button>
 		<style>
-			#gg {
+			#gg{
 				margin-left: 90%;
 				margin-bottom: 2%;
 				border-radius: 30px;
 				width: 80px;
-				height: 40px;
+				height: 40px;          
 			}
-		</style>
+			</style>
 
-
+		
 		<footer>
 			<section class="foot">
 				<div class="A">
@@ -289,7 +317,10 @@
 					</div>
 
 					<div id="c">
-						<h5>LATEST BLOG POSTS</h5>
+					<?php 
+						      $str = "<h5>LATEST BLOG POSTS</h5>";
+							     echo trim($str,"S");
+						?>
 						<h5>Best modern living room design </h5>
 						<p style="font-size: smaller;">A living room needs to be <br>
 							welcoming for you and your <br>
@@ -311,52 +342,46 @@
 
 					<div id="d">
 						<h5>CONTACT US</h5>
-						<?php
-						$regex = "/^[a-zA-Z\s]+$/";
-						$regex1 = "/^[a-zA-Z\s\d\.]+$/";
-						$regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-						if (isset($_POST['submit'])) {
-							if (preg_match($regex, $_POST['name'])) {
-								$name = "<span style='color:green'>&#10004; Valid input</span>";
-							} else if (empty($_POST['name'])) {
-								$name = "<span style='color:red'>*Required</span>";
-							} else {
-								$name = "<span style='color:red'>&#10006; Invalid input</span>";
-							}
-							if (preg_match($regex2, $_POST['email'])) {
-								$email = "<span style='color:green'>&#10004; Valid input</span>";
-							} else if (empty($_POST['email'])) {
-								$email = "<span style='color:red'>*Required</span>";
-							} else {
-								$email =  "<span style='color:red'>&#10006; Invalid input</span>";
-							}
-							if (preg_match($regex1, $_POST['subject'])) {
-								$subject = "<span style='color:green'>&#10004; Valid input</span>";
-							} else {
-								$subject = "<span style='color:red'>&#10006; Invalid input</span>";
-							}
-							if (preg_match($regex1, $_POST['message'])) {
-								$message = "<span style='color:green'>&#10004; Valid input</span>";
-							} else if (empty($_POST['message'])) {
-								$message = "<span>No input added</span>";
-							} else {
-								$message = "<span style='color:red'>&#10006; Invalid input</span>";
-							}
+					<?php
+					$regex = "/^[a-zA-Z\s]+$/";
+					$regex1 = "/^[a-zA-Z\s\d\.]+$/";
+					$regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
+					if(isset($_POST['submit'])){
+						if(preg_match($regex,$_POST['name'])){
+							$name = "<span style='color:green'>&#10004; Valid input</span>";
+						}else if(empty($_POST['name'])){
+							$name = "<span style='color:red'>*Required</span>";
 						}
-						?>
+						else{
+							$name = "<span style='color:red'>&#10006; Invalid input</span>";
+						}
+						if(preg_match($regex2,$_POST['email'])){
+							$email = "<span style='color:green'>&#10004; Valid input</span>";
+						}else if(empty($_POST['email'])){
+							$email = "<span style='color:red'>*Required</span>";
+						}else {
+							$email =  "<span style='color:red'>&#10006; Invalid input</span>";
+						}
+						if(preg_match($regex1,$_POST['subject'])){
+							$subject = "<span style='color:green'>&#10004; Valid input</span>";
+						}else{
+							$subject = "<span style='color:red'>&#10006; Invalid input</span>";
+						}
+						if(preg_match($regex1,$_POST['message'])){
+							$message = "<span style='color:green'>&#10004; Valid input</span>";
+						}else if(empty($_POST['message'])){
+							$message = "<span>No input added</span>";
+						}
+						else{
+							$message = "<span style='color:red'>&#10006; Invalid input</span>";
+						}
+					}
+					?>
 						<form method="POST" action="">
-							<input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
-																								echo $name;
-																							} ?><br /><br />
-							<input type="text" name="email" placeholder="Email" class="f" /><?php if (isset($email)) {
-																								echo $email;
-																							} ?><br /><br />
-							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if (isset($subject)) {
-																									echo $subject;
-																								} ?><br /><br />
-							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if (isset($message)) {
-																														echo $message;
-																													} ?>
+							<input type="text" name="name" placeholder="Name" class="f" /><?php if(isset($name)){echo $name;}?><br /><br /> 
+							<input type="text" name="email" placeholder="Email" class="f" /><?php if(isset($email)){echo $email;}?><br /><br />
+							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if(isset($subject)){echo $subject;}?><br /><br />
+							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if(isset($message)){echo $message;}?>
 							<br /><br />
 							<input id="submit" type="submit" name="submit">
 						</form>
@@ -365,21 +390,21 @@
 				<div>
 					<address>
 						<?php
-						$copy_date = "Copyright 2019";
-						$copy_date = preg_replace("([0-9]+)", "2020", $copy_date);
+							$copy_date = "Copyright 2019";
+							$copy_date = preg_replace("([0-9]+)","2020",$copy_date);
 						?>
 						<p id="copyright">&copy; <?php echo $copy_date; ?> Fundamentals of Web Development
 
 							.........email: <a href="mailto:yourhome@gmail.com ">yourhome@gmail.com</a><br />
-
+							
 						</p>
-
+						
 					</address>
-
+					
 				</div>
 
 			</section>
-
+			
 		</footer>
 	</main>
 	<script src="javascript/carousel.js"></script>

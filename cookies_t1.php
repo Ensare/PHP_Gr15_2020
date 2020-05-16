@@ -15,7 +15,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
-<title>(Type a title for your page here)</title>
 <style>
 #forma1
 {
@@ -29,22 +28,37 @@ input[type=text]
   box-sizing: border-box;
 
 }
+p
+{
+    text-align:center;
+    font-family: Alegreya Sans SC; 
+    font-size:25px;
+    padding: 0 2px 0 20px;
+    padding-top: 20px;
+    margin: 20px 59px 20px 20px;
+
+}
+a 
+{
+    font-size: 25px;
+    margin: 200px 20px;
+}
 </style>
 
 
 </head>
 
-<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#ff0000">
+<body  text="#000000" link="#0000ff" vlink="#800080" alink="#ff0000">
 <form method=post id='forma1' action=cookies_redirect.php  style="text-align: center;  " >
-<font face='Verdana' size='3' >Enter Your Name
-</font><input type=text name=name  >
+<p >Enter Your Name
+</p><input type=text name=name  >
 
 <button id="btn1">Next</button>
  
  </form>
 <br><br><br>
-<center><font face='Verdana' size='2'><a href=cookies_t1.php>Start a new cookie </a> | <a href=cookies_t2.php>Check the cookie </a> | <a href=cookies_t3.php>Remove the cookie </a>
-</font></center>
+<p><a href=cookies_t1.php>Start a new cookie </a> | <a href=cookies_t2.php>Check the cookie </a> | <a href=cookies_t3.php>Remove the cookie </a>
+</p>
 </body>
 
 </html>
