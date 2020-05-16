@@ -185,14 +185,21 @@ function showResult(str) {
             <img src="images/imgtat/id1.jpg" style="width: 400px; height: 250px" id="imgtip1" class="hoveer">
             <div id="blob">
                 <h3>Best interior decorating secrets</h3>
-                <p>Some people have a natural eye for design, but if you're more in the camp of those who can't do
+                <?php
+                    $var = "/[\.]+/";
+                    $content="Some people have a natural eye for design, but if you're more in the camp of those who can't do
                     anything without consulting Pinterest board upon Pinterest board before making any major changes,
                     we feel you. We'd love to have an interior designer on speed dial before deciding exactly where and
                     how hang to hang that sweet new wall art we bought on a whim. But until we win the lottery, we'll
-                    have
-                    to settle for trusting our guts, and taking plenty of design tips where we can get them. We've
-                    compiled
-                    some secrets straight from the pros to help you with all your decorating needs.</p>
+                    have to settle for trusting our guts, and taking plenty of design tips where we can get them. We've
+                    compiled some secrets straight from the pros to help you with all your decorating needs";
+                    $parts = preg_split($var, $content);
+      
+                    foreach($parts as $part){
+                    echo "$part!<br/>";
+                    }
+                ?>
+		    
                 <div id="btnsm">
                     <button id="showmore">Read more!</button>
                 </div>
