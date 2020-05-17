@@ -215,7 +215,7 @@ include("sendEmail.php"); ?>
     </header>
 
 
-    <form method="POST" id="mainForm" action="index.php">
+    <form method="POST" id="mainForm" action="">
         <h1 id="shpi" style="text-align: center; margin-top:2%;">Shipping Information</h1>
         <table cellspacing="50px;" id="forme">
             <thead>
