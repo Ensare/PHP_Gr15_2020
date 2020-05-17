@@ -86,6 +86,8 @@ function showResult(str) {
 				<a href="tips_and_tricks.php">Tips and tricks</a>
 				<a href="porosit_online.php">Online order</a>
 				<a href="rreth_nesh.php">About us</a>
+				<a href="login.php">Log in</a>
+				<a href="register.php">Sign up</a>
 			</div>
 		</nav>
 
@@ -151,10 +153,12 @@ function showResult(str) {
 				<span class="dot" onclick='currentSlide(4)'></span>
 			</div>
 		</section>
+
 		<div>	
-				<button style="margin-left:40%"><a href="includes/aboutUsForma.php">Quick info about us</a></button>
-				
-			</div>
+			<button style="margin-left:5%;border-radius:10px;padding:8px;"><a href="includes/write.php">Interior Design History</a></button>	
+			<button style="margin-left:32%;border-radius:10px;padding:8px;"><a href="includes/aboutUsForma.php">Quick info about us</a></button>
+		</div>	
+		
 		<section class="pjesa2">
 		
 			<div class="wpsau">
