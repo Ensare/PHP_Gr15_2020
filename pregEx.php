@@ -4,7 +4,7 @@ session_start();
 try
 {
 
-    $mysqli = mysqli_connect("localhost", "root", "php123!", "phpconnection");
+    $mysqli = mysqli_connect("localhost", "root", "", "phpconnection");
 
     if (mysqli_connect_error())
     {

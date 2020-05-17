@@ -25,7 +25,7 @@ include("sendEmail.php"); ?>
 
     <?php
     try {
-    $db = mysqli_connect("localhost", "root", "php123!", "phpconnection");
+    $db = mysqli_connect("localhost", "root", "", "phpconnection");
 
     if (mysqli_connect_error()){
         throw new Exception(mysqli_connect_error());
