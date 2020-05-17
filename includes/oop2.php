@@ -1,14 +1,14 @@
 <?php
     class Company {
-        var $name;
-        var $city;
-        var $address;
-        var $employees;
-        var $phone;
-        var $year;
-        var $time;
-        var $days;
-        var $pronari;
+        public $name;
+        public $city;
+        public $address;
+        public $employees;
+        public $phone;
+        public $year;
+        public $time;
+        public $days;
+        public $pronari;
 
     function set_Name($Name){
         $this->name = $Name;
