@@ -1,3 +1,4 @@
+<?php include('../pregEx.php'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -104,7 +105,6 @@ function showResult(str) {
                 </div>
                 <a href="../tips_and_tricks.php">Tips and tricks</a>
                 <a href="../porosit_online.php">Online order</a>
-                <a href="../apliko_per_pune.php">Apply for job</a>
                 <a href="../rreth_nesh.php">About us</a>
             </div>
         </nav>
@@ -147,18 +147,8 @@ function showResult(str) {
         </div>
 
         </div>
-        <p id="det3"></p>
+     
 
-        <p id="det4"></p>
-        <script type="text/javascript">
-            var q = myFunction3(1900, 86);
-
-            function myFunction3(w, v) {
-                return w + v;
-            }
-            document.getElementById("det4").innerHTML = "With you " + q + " years.";
-            document.getElementById("det4").style.textAlign = "center";
-        </script>
 
         <footer>
             <section class="foot">
@@ -225,56 +215,26 @@ function showResult(str) {
 
 
                     <div id="d">
-                        <h5>CONTACT US</h5>
-                        <?php
-                        $regex = "/^[a-zA-Z\s]+$/";
-                        $regex1 = "/^[a-zA-Z\s\d\.]+$/";
-                        $regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-                        if (isset($_POST['submit'])) {
-                            if (preg_match($regex, $_POST['name'])) {
-                                $name = "<span style='color:green'>&#10004; Valid input</span>";
-                            } else if (empty($_POST['name'])) {
-                                $name = "<span style='color:red'>*Required</span>";
-                            } else {
-                                $name = "<span style='color:red'>&#10006; Invalid input</span>";
-                            }
-                            if (preg_match($regex2, $_POST['email'])) {
-                                $email = "<span style='color:green'>&#10004; Valid input</span>";
-                            } else if (empty($_POST['email'])) {
-                                $email = "<span style='color:red'>*Required</span>";
-                            } else {
-                                $email =  "<span style='color:red'>&#10006; Invalid input</span>";
-                            }
-                            if (preg_match($regex1, $_POST['subject'])) {
-                                $subject = "<span style='color:green'>&#10004; Valid input</span>";
-                            } else {
-                                $subject = "<span style='color:red'>&#10006; Invalid input</span>";
-                            }
-                            if (preg_match($regex1, $_POST['message'])) {
-                                $message = "<span style='color:green'>&#10004; Valid input</span>";
-                            } else if (empty($_POST['message'])) {
-                                $message = "<span>No input added</span>";
-                            } else {
-                                $message = "<span style='color:red'>&#10006; Invalid input</span>";
-                            }
-                        }
-                        ?>
-                        <form method="POST" action="">
-                            <input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
-                                                                                                echo $name;
+                    <h5>CONTACT US</h5>
+
+                    <form method="POST" action="">
+                        <input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
+                                                                                            echo $name;
+                                                                                        } ?><br /><br />
+                        <input type="text" name="email" placeholder="Email" class="f" /><?php if (isset($email)) {
+                                                                                            echo $email;
+                                                                                        } ?><br /><br />
+                        <input type="type" name="subject" placeholder="Subject" class="f" /><?php if (isset($subject)) {
+                                                                                                echo $subject;
                                                                                             } ?><br /><br />
-                            <input type="text" name="email" placeholder="Email" class="f" /><?php if (isset($email)) {
-                                                                                                echo $email;
-                                                                                            } ?><br /><br />
-                            <input type="type" name="subject" placeholder="Subject" class="f" /><?php if (isset($subject)) {
-                                                                                                    echo $subject;
-                                                                                                } ?><br /><br />
-                            <textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if (isset($message)) {
-                                                                                                                        echo $message;
-                                                                                                                    } ?>
-                            <br /><br />
-                            <input id="submit" type="submit" name="submit">
-                        </form>
+                        <textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if (isset($message)) {
+                                                                                                                    echo $message;
+                                                                                                                } ?>
+                        <br /><br />
+                        <input id="submit" type="submit" name="submit2">
+                        <input type="hidden" name="form_number" value="2" />
+                    </form>
+                </div>
                     </div>
                 </div>
                 <div>

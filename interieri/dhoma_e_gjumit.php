@@ -1,3 +1,4 @@
+<?php include('../pregEx.php'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -70,7 +71,6 @@ function showResult(str) {
                 </div>
                 <a href="../tips_and_tricks.php">Tips and tricks</a>
                 <a href="../porosit_online.php">Online order</a>
-                <a href="../apliko_per_pune.php">Apply for job</a>
                 <a href="../rreth_nesh.php">About us</a>
             </div>
         </nav>
@@ -90,27 +90,27 @@ function showResult(str) {
         </section>
 
         <section class="produktet_dh_gjumit">
-            <a href="dhoma_gjumit_produktet.html/dhgj_produkti1.php">
+            <a href="dhoma_gjumit_produktet.php/dhgj_produkti1.php">
                 <img id="dhgj_produkti1" class="hoveer" src="../images/imggjumi/dhgj1.jpeg"
                     style="width: 400px; height: 271px"></a>
 
-            <a href="dhoma_gjumit_produktet.html/dhgj_produkti2.php">
+            <a href="dhoma_gjumit_produktet.php/dhgj_produkti2.php">
                 <img id="dhgj_produkti2" class="hoveer" src="../images/imggjumi/dhgj2.jpg"
                     style="width: 400px; height: 271px"></a>
 
-            <a href="dhoma_gjumit_produktet.html/dhgj_produkti3.php">
+            <a href="dhoma_gjumit_produktet.php/dhgj_produkti3.php">
                 <img id="dhgj_produkti3" class="hoveer" src="../images/imggjumi/dhgj3.jpg"
                     style="width: 400px ;height: 271px"></a>
 
-            <a href="dhoma_gjumit_produktet.html/dhgj_produkti4.php">
+            <a href="dhoma_gjumit_produktet.php/dhgj_produkti4.php">
                 <img id="dhgj_produkti4" class="hoveer" src="../images/imggjumi/dhgj4.jpg"
                     style="width: 400px; height: 271px"></a>
 
-            <a href="dhoma_gjumit_produktet.html/dhgj_produkti5.php">
+            <a href="dhoma_gjumit_produktet.php/dhgj_produkti5.php">
                 <img id="dhgj_produkti5" class="hoveer" src="../images/imggjumi/dhgj5.jpg"
                     style="width: 400px; height: 271px"></a>
 
-            <a href="dhoma_gjumit_produktet.html/dhgj_produkti6.php">
+            <a href="dhoma_gjumit_produktet.php/dhgj_produkti6.php">
                 <img id="dhgj_produkti6" class="hoveer" src="../images/imggjumi/dhgj6.jpg"
                     style="width: 400px; height: 271px"></a>
 
@@ -132,7 +132,7 @@ function showResult(str) {
                             and hardworking crew, we have expanded
                             our store to three new locations,
                             bringing ourselves closer to the customers!
-                            <a href="../rreth_nesh.html">Read More>></a>
+                            <a href="../rreth_nesh.php">Read More>></a>
                         </p>
                     </div>
         
@@ -184,51 +184,26 @@ function showResult(str) {
         
         
                     <div id="d">
-						<h5>CONTACT US</h5>
-					<?php
-					$regex = "/^[a-zA-Z\s]+$/";
-					$regex1 = "/^[a-zA-Z\s\d\.]+$/";
-					$regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-					if(isset($_POST['submit'])){
-						if(preg_match($regex,$_POST['name'])){
-							$name = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['name'])){
-							$name = "<span style='color:red'>*Required</span>";
-						}
-						else{
-							$name = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex2,$_POST['email'])){
-							$email = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['email'])){
-							$email = "<span style='color:red'>*Required</span>";
-						}else {
-							$email =  "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['subject'])){
-							$subject = "<span style='color:green'>&#10004; Valid input</span>";
-						}else{
-							$subject = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['message'])){
-							$message = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['message'])){
-							$message = "<span>No input added</span>";
-						}
-						else{
-							$message = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-					}
-					?>
-						<form method="POST" action="">
-							<input type="text" name="name" placeholder="Name" class="f" /><?php if(isset($name)){echo $name;}?><br /><br /> 
-							<input type="text" name="email" placeholder="Email" class="f" /><?php if(isset($email)){echo $email;}?><br /><br />
-							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if(isset($subject)){echo $subject;}?><br /><br />
-							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if(isset($message)){echo $message;}?>
-							<br /><br />
-							<input id="submit" type="submit" name="submit">
-						</form>
-					</div>
+                    <h5>CONTACT US</h5>
+
+                    <form method="POST" action="">
+                        <input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
+                                                                                            echo $name;
+                                                                                        } ?><br /><br />
+                        <input type="text" name="email" placeholder="Email" class="f" /><?php if (isset($email)) {
+                                                                                            echo $email;
+                                                                                        } ?><br /><br />
+                        <input type="type" name="subject" placeholder="Subject" class="f" /><?php if (isset($subject)) {
+                                                                                                echo $subject;
+                                                                                            } ?><br /><br />
+                        <textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if (isset($message)) {
+                                                                                                                    echo $message;
+                                                                                                                } ?>
+                        <br /><br />
+                        <input id="submit" type="submit" name="submit2">
+                        <input type="hidden" name="form_number" value="2" />
+                    </form>
+                </div>
 				</div>
 				<div>
 					<address>

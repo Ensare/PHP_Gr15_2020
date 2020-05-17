@@ -1,3 +1,5 @@
+<?php include('pregEx.php');?>
+
 <!DOCTYPE html> 
 <html manifest="home.appcache">
 
@@ -83,7 +85,6 @@ function showResult(str) {
 				</div>
 				<a href="tips_and_tricks.php">Tips and tricks</a>
 				<a href="porosit_online.php">Online order</a>
-				<a href="apliko_per_pune.php">Apply for job</a>
 				<a href="rreth_nesh.php">About us</a>
 			</div>
 		</nav>
@@ -201,7 +202,7 @@ function showResult(str) {
 				<p id="pershkrimi"> Ensare is our great leader that we all love and respect.
 					She writes the cleanest code you'll ever see and even though we differ in our religious views
 					we still have a lot of fun together. Also, DO NOT call her 'CALE'! <br>
-					<a href="rreth_nesh.html#ensarja">See more</a></p>
+					<a href="rreth_nesh.php#ensarja">See more</a></p>
 
 				<br />
 
@@ -209,7 +210,7 @@ function showResult(str) {
 				<p id="pershkrimi">Arita is a young, hardworking woman, who we like to call 'Vogelushe' due to her
 					babyface and height. However, she is three times squared the ordinary human and works more than
 					you'd think possible. <br>
-					<a href="rreth_nesh.html#arita">See more</a></p>
+					<a href="rreth_nesh.php#arita">See more</a></p>
 				</p>
 
 				<br />
@@ -218,7 +219,7 @@ function showResult(str) {
 				<p id="pershkrimi">Argjenta is the joy of our team. Whenever we feel down or bad she is there with her
 					infectious laughter, and you'll feel better just by hearing her laugh! She keeps the group updated
 					and doesn't let us worry for the stupid things that we love worrying about. <br>
-					<a href="rreth_nesh.html#argjenta">See more</a></p>
+					<a href="rreth_nesh.php#argjenta">See more</a></p>
 				</p>
 
 
@@ -231,7 +232,7 @@ function showResult(str) {
 					brightest bulb in the box. She loves calling herself "Alineee, budalliceeee" whenever she doesn't
 					know what she's doing.
 					And that's a lot. <br>
-					<a href="rreth_nesh.html#alina">See more</a></p>
+					<a href="rreth_nesh.php#alina">See more</a></p>
 				</p>
 
 			</div>
@@ -243,20 +244,20 @@ function showResult(str) {
 				Have nothing in your houses that you do not know to be useful or believe to be beautiful.”</p>
 			<hr id="vija_poshte">
 			<figure id="galeria">
-				<a href="interieri\dhoma_dites_produktet\dhd_produkti5.html">
+				<a href="interieri\dhoma_dites_produktet\dhd_produkti5.php">
 					<img src="images/imgdhdites/dhd_produkti5.png" style="width: 280px; height: 160px"></a>
 				<figcaption>
-					<a href="interieri\dhoma_dites_produktet\dhd_produkti5.html">VIEW THIS PRODUCT </em></a>
+					<a href="interieri\dhoma_dites_produktet\dhd_produkti5.php">VIEW THIS PRODUCT </em></a>
 				</figcaption>
-				<a href="interieri\kuzhina_produktet\produkti5.html">
+				<a href="interieri\kuzhina_produktet\produkti5.php">
 					<img src="images/imgkuzhina/e.jpg" style="width: 280px; height: 160px"></a>
 				<figcaption>
-					<a href="interieri\kuzhina_produktet\produkti5.html">VIEW THIS PRODUCT </em></a>
+					<a href="interieri\kuzhina_produktet\produkti5.php">VIEW THIS PRODUCT </em></a>
 				</figcaption>
-				<a href="interieri\dhoma_gjumit_produktet\dhgj_produkti1.html">
+				<a href="interieri\dhoma_gjumit_produktet\dhgj_produkti1.php">
 					<img src="images/imggjumi/dhgj1.jpeg" style="width: 280px; height: 160px"></a>
 				<figcaption>
-					<a href="interieri\dhoma_gjumit_produktet\dhgj_produkti1.html">VIEW THIS PRODUCT</em></a>
+					<a href="interieri\dhoma_gjumit_produktet\dhgj_produkti1.php">VIEW THIS PRODUCT</em></a>
 				</figcaption>
 			</figure>
 		</div>
@@ -286,25 +287,25 @@ function showResult(str) {
 							and hardworking crew, we have expanded
 							our store to three new locations,
 							bringing ourselves closer to the customers!
-							<a href="rreth_nesh.html">Read More>></a>
+							<a href="rreth_nesh.php">Read More>></a>
 						</p>
 					</div>
 
 					<div id="b">
 						<h5 id="links">BEST PRODUCTS</h5>
 						<ol>
-							<li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.html">Natalia</a></li>
-							<li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.html">Tommy Bahama</a></li>
-							<li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.html">Starmore</a></li>
-							<li><a href="interieri\kuzhina_produktet\produkti3.html">Zobel and Co Kitchen</a></li>
-							<li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.html">Wayfair</a></li>
-							<li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.html">Palma</a></li>
-							<li><a href="interieri\kuzhina_produktet\produkti6.html">Bescope Kitchen</a></li>
-							<li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.html">Edelmar</a></li>
-							<li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.html">Oisin</a></li>
-							<li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.html">Wystfield</a></li>
-							<li><a href="interieri\kuzhina_produktet\produkti4.html">Calgary Kitchen</a></li>
-							<li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.html">Tuft and Needle</a></li>
+							<li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.php">Natalia</a></li>
+							<li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.php">Tommy Bahama</a></li>
+							<li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.php">Starmore</a></li>
+							<li><a href="interieri\kuzhina_produktet\produkti3.php">Zobel and Co Kitchen</a></li>
+							<li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.php">Wayfair</a></li>
+							<li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.php">Palma</a></li>
+							<li><a href="interieri\kuzhina_produktet\produkti6.php">Bescope Kitchen</a></li>
+							<li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.php">Edelmar</a></li>
+							<li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.php">Oisin</a></li>
+							<li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.php">Wystfield</a></li>
+							<li><a href="interieri\kuzhina_produktet\produkti4.php">Calgary Kitchen</a></li>
+							<li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.php">Tuft and Needle</a></li>
 
 						</ol></br>
 
@@ -341,51 +342,26 @@ function showResult(str) {
 
 
 					<div id="d">
-						<h5>CONTACT US</h5>
-					<?php
-					$regex = "/^[a-zA-Z\s]+$/";
-					$regex1 = "/^[a-zA-Z\s\d\.]+$/";
-					$regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-					if(isset($_POST['submit'])){
-						if(preg_match($regex,$_POST['name'])){
-							$name = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['name'])){
-							$name = "<span style='color:red'>*Required</span>";
-						}
-						else{
-							$name = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex2,$_POST['email'])){
-							$email = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['email'])){
-							$email = "<span style='color:red'>*Required</span>";
-						}else {
-							$email =  "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['subject'])){
-							$subject = "<span style='color:green'>&#10004; Valid input</span>";
-						}else{
-							$subject = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['message'])){
-							$message = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['message'])){
-							$message = "<span>No input added</span>";
-						}
-						else{
-							$message = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-					}
-					?>
-						<form method="POST" action="">
-							<input type="text" name="name" placeholder="Name" class="f" /><?php if(isset($name)){echo $name;}?><br /><br /> 
-							<input type="text" name="email" placeholder="Email" class="f" /><?php if(isset($email)){echo $email;}?><br /><br />
-							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if(isset($subject)){echo $subject;}?><br /><br />
-							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if(isset($message)){echo $message;}?>
-							<br /><br />
-							<input id="submit" type="submit" name="submit">
-						</form>
-					</div>
+                    <h5>CONTACT US</h5>
+
+                    <form method="POST" action="">
+                        <input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
+                                                                                            echo $name;
+                                                                                        } ?><br /><br />
+                        <input type="text" name="email" placeholder="Email" class="f" /><?php if (isset($email)) {
+                                                                                            echo $email;
+                                                                                        } ?><br /><br />
+                        <input type="type" name="subject" placeholder="Subject" class="f" /><?php if (isset($subject)) {
+                                                                                                echo $subject;
+                                                                                            } ?><br /><br />
+                        <textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if (isset($message)) {
+                                                                                                                    echo $message;
+                                                                                                                } ?>
+                        <br /><br />
+                        <input id="submit" type="submit" name="submit2">
+                        <input type="hidden" name="form_number" value="2" />
+                    </form>
+                </div>
 				</div>
 				<div>
 					<address>

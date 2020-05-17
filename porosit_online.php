@@ -1,4 +1,5 @@
 <?php
+include('pregEx.php');
 session_start();
 
 $connect = mysqli_connect("localhost", "root", "php123!", "phpconnection");
@@ -54,7 +55,6 @@ if (isset($_GET["action"])) {
     <link href='https://fonts.googleapis.com/css?family=Allan' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="lib/reset.css">
     <link rel="stylesheet" href="lib/animate.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="lib/stilizimi.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
@@ -65,8 +65,9 @@ if (isset($_GET["action"])) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
     <script src="javascript\validimi.js"></script>
     <script src="javascript\produktet.js"></script>
+</head>
 
-    <script>
+<script>
 function showResult(str) {
   if (str.length==0) {
     document.getElementById("livesearch").innerHTML="";
@@ -84,9 +85,6 @@ function showResult(str) {
   xmlhttp.send();
 }
 </script>
-        
-
-</head>
 
 <style>
 
@@ -129,9 +127,8 @@ function showResult(str) {
             </div>
 
             <div id="search">
-            <form method="get" action="">
-                <input type="text" size="20" onkeyup="showResult(this.value)">
-                <div id="livesearch"></div>
+                <form method="get" action="">
+                    <input type="search" name="Search">
                 </form>
             </div>
 
@@ -151,7 +148,6 @@ function showResult(str) {
                 </div>
                 <a href="tips_and_tricks.php">Tips and tricks</a>
                 <a href="porosit_online.php">Online order</a>
-                <a href="apliko_per_pune.php">Apply for job</a>
                 <a href="rreth_nesh.php">About us</a>
             </div>
         </nav>
@@ -210,6 +206,8 @@ function showResult(str) {
                     <?php
                         $total = $total + ($values["item_quantity"] * $values["item_price"]);
                         $quantity = $quantity + ($values["item_quantity"]);
+                        $_SESSION['var']=$total;
+                    
                     }
                     ?>
                     <tr>
@@ -271,25 +269,25 @@ function showResult(str) {
                         and hardworking crew, we have expanded
                         our store to three new locations,
                         bringing ourselves closer to the customers!
-                        <a href="rreth_nesh.html">Read More>></a>
+                        <a href="rreth_nesh.php">Read More>></a>
                     </p>
                 </div>
 
                 <div id="b">
                     <h5 id="links">BEST PRODUCTS</h5>
                     <ol>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.html">Natalia</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.html">Tommy Bahama</a></li>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.html">Starmore</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti3.html">Zobel and Co Kitchen</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.html">Wayfair</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.html">Palma</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti6.html">Bescope Kitchen</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.html">Edelmar</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.html">Oisin</a></li>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.html">Wystfield</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti4.html">Calgary Kitchen</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.html">Tuft and Needle</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.php">Natalia</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.php">Tommy Bahama</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.php">Starmore</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti3.php">Zobel and Co Kitchen</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.php">Wayfair</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.php">Palma</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti6.php">Bescope Kitchen</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.php">Edelmar</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.php">Oisin</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.php">Wystfield</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti4.php">Calgary Kitchen</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.php">Tuft and Needle</a></li>
 
                     </ol></br>
 
@@ -324,39 +322,7 @@ function showResult(str) {
 
                 <div id="d">
                     <h5>CONTACT US</h5>
-                    <?php
-                    $regex = "/^[a-zA-Z\s]+$/";
-                    $regex1 = "/^[a-zA-Z\s\d\.]+$/";
-                    $regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-                    if (isset($_POST['submit'])) {
-                        if (preg_match($regex, $_POST['name'])) {
-                            $name = "<span style='color:green'>&#10004; Valid input</span>";
-                        } else if (empty($_POST['name'])) {
-                            $name = "<span style='color:red'>*Required</span>";
-                        } else {
-                            $name = "<span style='color:red'>&#10006; Invalid input</span>";
-                        }
-                        if (preg_match($regex2, $_POST['email'])) {
-                            $email = "<span style='color:green'>&#10004; Valid input</span>";
-                        } else if (empty($_POST['email'])) {
-                            $email = "<span style='color:red'>*Required</span>";
-                        } else {
-                            $email =  "<span style='color:red'>&#10006; Invalid input</span>";
-                        }
-                        if (preg_match($regex1, $_POST['subject'])) {
-                            $subject = "<span style='color:green'>&#10004; Valid input</span>";
-                        } else {
-                            $subject = "<span style='color:red'>&#10006; Invalid input</span>";
-                        }
-                        if (preg_match($regex1, $_POST['message'])) {
-                            $message = "<span style='color:green'>&#10004; Valid input</span>";
-                        } else if (empty($_POST['message'])) {
-                            $message = "<span>No input added</span>";
-                        } else {
-                            $message = "<span style='color:red'>&#10006; Invalid input</span>";
-                        }
-                    }
-                    ?>
+
                     <form method="POST" action="">
                         <input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
                                                                                             echo $name;
@@ -371,7 +337,8 @@ function showResult(str) {
                                                                                                                     echo $message;
                                                                                                                 } ?>
                         <br /><br />
-                        <input id="submit" type="submit" name="submit">
+                        <input id="submit" type="submit" name="submit2">
+                        <input type="hidden" name="form_number" value="2" />
                     </form>
                 </div>
             </div>
