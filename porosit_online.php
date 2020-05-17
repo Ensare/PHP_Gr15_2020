@@ -1,7 +1,6 @@
 <?php
 include('pregEx.php');
 session_start();
-
 try {
 
 $connect = mysqli_connect("localhost", "root", "php123!", "phpconnection");
@@ -52,6 +51,7 @@ catch (Exception $e){
     print_r($e);
 }
 ?>
+?>
 
 
 
@@ -76,11 +76,26 @@ catch (Exception $e){
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
     <script src="javascript\validimi.js"></script>
     <script src="javascript\produktet.js"></script>
-
-
-        
-
 </head>
+
+<script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
 
 <style>
 
@@ -265,25 +280,25 @@ catch (Exception $e){
                         and hardworking crew, we have expanded
                         our store to three new locations,
                         bringing ourselves closer to the customers!
-                        <a href="rreth_nesh.html">Read More>></a>
+                        <a href="rreth_nesh.php">Read More>></a>
                     </p>
                 </div>
 
                 <div id="b">
                     <h5 id="links">BEST PRODUCTS</h5>
                     <ol>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.html">Natalia</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.html">Tommy Bahama</a></li>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.html">Starmore</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti3.html">Zobel and Co Kitchen</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.html">Wayfair</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.html">Palma</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti6.html">Bescope Kitchen</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.html">Edelmar</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.html">Oisin</a></li>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.html">Wystfield</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti4.html">Calgary Kitchen</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.html">Tuft and Needle</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.php">Natalia</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.php">Tommy Bahama</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.php">Starmore</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti3.php">Zobel and Co Kitchen</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.php">Wayfair</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.php">Palma</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti6.php">Bescope Kitchen</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.php">Edelmar</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.php">Oisin</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.php">Wystfield</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti4.php">Calgary Kitchen</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.php">Tuft and Needle</a></li>
 
                     </ol></br>
 
@@ -318,39 +333,7 @@ catch (Exception $e){
 
                 <div id="d">
                     <h5>CONTACT US</h5>
-                    <?php
-                    $regex = "/^[a-zA-Z\s]+$/";
-                    $regex1 = "/^[a-zA-Z\s\d\.]+$/";
-                    $regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-                    if (isset($_POST['submit'])) {
-                        if (preg_match($regex, $_POST['name'])) {
-                            $name = "<span style='color:green'>&#10004; Valid input</span>";
-                        } else if (empty($_POST['name'])) {
-                            $name = "<span style='color:red'>*Required</span>";
-                        } else {
-                            $name = "<span style='color:red'>&#10006; Invalid input</span>";
-                        }
-                        if (preg_match($regex2, $_POST['email'])) {
-                            $email = "<span style='color:green'>&#10004; Valid input</span>";
-                        } else if (empty($_POST['email'])) {
-                            $email = "<span style='color:red'>*Required</span>";
-                        } else {
-                            $email =  "<span style='color:red'>&#10006; Invalid input</span>";
-                        }
-                        if (preg_match($regex1, $_POST['subject'])) {
-                            $subject = "<span style='color:green'>&#10004; Valid input</span>";
-                        } else {
-                            $subject = "<span style='color:red'>&#10006; Invalid input</span>";
-                        }
-                        if (preg_match($regex1, $_POST['message'])) {
-                            $message = "<span style='color:green'>&#10004; Valid input</span>";
-                        } else if (empty($_POST['message'])) {
-                            $message = "<span>No input added</span>";
-                        } else {
-                            $message = "<span style='color:red'>&#10006; Invalid input</span>";
-                        }
-                    }
-                    ?>
+
                     <form method="POST" action="">
                         <input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
                                                                                             echo $name;
@@ -365,7 +348,8 @@ catch (Exception $e){
                                                                                                                     echo $message;
                                                                                                                 } ?>
                         <br /><br />
-                        <input id="submit" type="submit" name="submit">
+                        <input id="submit" type="submit" name="submit2">
+                        <input type="hidden" name="form_number" value="2" />
                     </form>
                 </div>
             </div>
