@@ -1,3 +1,24 @@
+<?php 
+include('pregEx.php');
+$apiKey = "eab060642a2ff7ce3f9388548e13cc36";
+$cityId = "786714";
+$googleApiUrl = "http://api.openweathermap.org/data/2.5/weather?id=" . $cityId . "&lang=en&units=metric&APPID=" . $apiKey;
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_URL, $googleApiUrl);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_VERBOSE, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+$response = curl_exec($ch);
+
+curl_close($ch);
+$data = json_decode($response);
+$currentTime = time();
+?>
+
 <!DOCTYPE html>
 <html manifest="home.appcache">
 
@@ -12,24 +33,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="javascript/jquery-3.4.1.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyCMqFg25fYARDPgH7_Fcqt60GzMROprDEA&sensor=true"></script>
-    <script>
-function showResult(str) {
-  if (str.length==0) {
-    document.getElementById("livesearch").innerHTML="";
-    document.getElementById("livesearch").style.border="0px";
-    return;
-  }
-  var xmlhttp=new XMLHttpRequest();
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-      document.getElementById("livesearch").innerHTML=this.responseText;
-      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
-    }
-  }
-  xmlhttp.open("GET","livesearch.php?q="+str,true);
-  xmlhttp.send();
-}
-</script>
     <style>
         #shortquote {
             display: none;
@@ -88,9 +91,8 @@ function showResult(str) {
             </div>
 
             <div id="search">
-            <form method="get" action="">
-                <input type="text" size="20" onkeyup="showResult(this.value)">
-                <div id="livesearch"></div>
+                <form method="get" action="">
+                    <input type="search" name="Search">
                 </form>
             </div>
 
@@ -110,7 +112,6 @@ function showResult(str) {
                 </div>
                 <a href="tips_and_tricks.php">Tips and tricks</a>
                 <a href="porosit_online.php">Online order</a>
-                <a href="apliko_per_pune.php">Apply for job</a>
                 <a href="rreth_nesh.php">About us</a>
             </div>
         </nav>
@@ -130,15 +131,10 @@ function showResult(str) {
 
         <div id="desc">
             <h2>About us</h2>
-            <?php
-             $number = 80;
-               $str = "bold";
-              printf("Your Home is a furniture store that operates since the %us With our %s and hardworking crew, we have expanded our store to three new locations,
-              bringing ourselves closer to the customers! .",$number,$str);
-            ?>
-            <p> 
-                
-                Only <?php echo strlen("Your Home");?> characters.
+
+            <p>Your Home is a furniture store that operates since the 80s.
+                With our bold and hardworking crew, we have expanded our store to three new locations,
+                bringing ourselves closer to the customers!<br>
                 So without further ado...
             </p>
             <div id="btnmt">
@@ -148,7 +144,7 @@ function showResult(str) {
 
         <div class="meettheTeam">
             <div id='ensarja'>
-                <p class="src1"><img class="mtfig" src="images/imgau/ensarja.jpeg" /> <?php echo str_replace("mbiemri","Islami","Ensare mbiemri");?></p>
+                <p class="src1"><img class="mtfig" src="images/imgau/ensarja.jpeg" /> Ensare Islami</p>
                 <p id="pershkrimi"> Ensare is our great leader that we all love and respect.
                     She writes the cleanest code you'll ever see and even though we differ in our religious views
                     we still have a lot of fun together.</p>
@@ -157,7 +153,7 @@ function showResult(str) {
             </div>
             <div id='alina'>
 
-                <p class="src1"><img class="mtfig" src="images/imgau/alina.jpg" /> <?php echo str_replace("mbiemri","Fazliu","Alina mbiemri");?></p>
+                <p class="src1"><img class="mtfig" src="images/imgau/alina.jpg" /> Alina Fazliu</p>
                 <p id="pershkrimi">Alina is our mom manager. She keeps us all together, however she just isn't the
                     brightest bulb in the box. While working she loves calling herself "Alineee, budalliceeee"
                     whenever she
@@ -165,14 +161,14 @@ function showResult(str) {
                     know what she's doing. And that's a lot.</p>
             </div>
             <div id='arita'>
-                <p class="src1"><img class="mtfig" src="images/imgau/arita.jpg" /> <?php echo str_replace("mbiemri","Alidemaj","Arita mbiemri");?></p>
+                <p class="src1"><img class="mtfig" src="images/imgau/arita.jpg" /> Arita Alidemaj</p>
                 <p id="pershkrimi">Arita is a young, hardowrking woman, who we like to call 'Vogelushe' due to her
                     babyface and height. However, do not let that fool you! She is three times squared the
                     ordinary human and works more than her physique lets you know.</p>
 
             </div>
             <div id='argjenta'>
-                <p class="src1"><img class="mtfig" src="images/imgau/argjenta.jpg" /><?php echo str_replace("mbiemri","Gashi","Argjenta mbiemri");?> </p>
+                <p class="src1"><img class="mtfig" src="images/imgau/argjenta.jpg" /> Argjenta Gashi</p>
                 <p id="pershkrimi">Argjenta is the joy of our team. Whenever we feel down or bad she is there with
                     her
                     infectious laughter, and you'll feel better just by hearing her laugh! She keeps the group
@@ -201,22 +197,22 @@ function showResult(str) {
         <section class="map">
             <p> <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46940.16240130711!2d21.12362200557275!3d42.66643785383894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ee605110927%3A0x9365bfdf385eb95a!2sPrishtina!5e0!3m2!1sen!2s!4v1577470590151!5m2!1sen!2s"
-                    width="380" height="240" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    width="300" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
             </p>
             <p> <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46780.1845996892!2d20.820138607186014!3d42.87787708565547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135345063679ba21%3A0xc24c0fe075e868e2!2sMitrovica!5e0!3m2!1sen!2s!4v1577470638191!5m2!1sen!2s"
-                    width="380" height="240" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    width="300" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
             </p>
 
             <p>
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46944.5069511221!2d20.263113555528943!3d42.66068395976845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1352fdc097e0cba1%3A0x2d9296d8cc0eba51!2sPeja!5e0!3m2!1sen!2s!4v1577469888315!5m2!1sen!2s"
-                    width="380" height="240" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    width="300" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
             </p>
         </section>
 
         <section id="adresa">
-            <address>
+            <address style="width: 380px;">
                 Address:Bajram Kelmendi <br />
                 City: Pristina <br />
                 Region: Pristina <br />
@@ -225,7 +221,7 @@ function showResult(str) {
                 Phone: 24233444 <br />
                 Email: yourhome@gmail.com
             </address>
-            <address>
+            <address style="width: 400px;">
                 Address:Ferit Preteni <br />
                 City: Mitrovica <br />
                 Region: Mitrovica <br />
@@ -234,7 +230,7 @@ function showResult(str) {
                 Phone: 24233444 <br />
                 Email: yourhome@gmail.com
             </address>
-            <address>
+            <address style="width: 350px;">
                 Address:Zhuj Selmani <br />
                 City: Peja <br />
                 Region: Peja <br />
@@ -248,16 +244,14 @@ function showResult(str) {
         <style>
         #adresa{
             margin: 3%;
-            column-count: 3;
-            column-width: 300px;
-            column-gap: 100px;
+            display: flex;
         }
         
         </style>
 
-        <h2 id="cord">Get your coordinates and see which store is nearest to you!</h2>
+        <h2 id="cord" align='center'>Get your coordinates and see which store is nearest to you!</h2>
         <section class="coordinates">
-            <div id="div-btn"> <button id="btn-pos" onclick="getLocation()">Your Position!</button>
+            <div id="div-btn" align='center'> <button id="btn-pos" onclick="getLocation()">Your Position!</button>
                 <p id="pos"></p>
             </div>
             <style>
@@ -269,13 +263,31 @@ function showResult(str) {
                     font-family: Alegreya Sans SC;
                 }
             </style>
-            <div id="map">
-                <iframe id="google_map" width="425" height="350" frameborder="0" style="border:0"
+            <div id="map" align='center'>
+                <iframe id="google_map" width="400" height="325" frameborder="0" style="border:0"
                     src="https://maps.google.com?output=embed">
                 </iframe>
             </div>
 
         </section>
+
+        <div class="report-container" align='center' style="margin-bottom: 3%;">
+        <h2><?php echo $data->name; ?> Weather Status</h2>
+        <div class="time">
+            <div><?php echo date("l g:i a", $currentTime); ?></div>
+            <div><?php echo date("jS F, Y",$currentTime); ?></div>
+            <div><?php echo ucwords($data->weather[0]->description); ?></div>
+        </div>
+        <div class="weather-forecast">
+            <img src="http://openweathermap.org/img/w/<?php echo $data->weather[0]->icon; ?>.png" class="weather-icon" /></br>
+             <?php echo $data->main->temp_max; ?>°C</br>
+            <?php echo $data->main->temp_min; ?>°C
+        </div>
+        <div class="time">
+            <div>Humidity: <?php echo $data->main->humidity; ?> %</div>
+            <div>Wind: <?php echo $data->wind->speed; ?> km/h</div>
+        </div>
+    </div>
     </main>
 
     <footer>
@@ -291,25 +303,25 @@ function showResult(str) {
                         and hardworking crew, we have expanded
                         our store to three new locations,
                         bringing ourselves closer to the customers!
-                        <a href="rreth_nesh.html">Read More>></a>
+                        <a href="rreth_nesh.php">Read More>></a>
                     </p>
                 </div>
 
                 <div id="b">
                     <h5 id="links">BEST PRODUCTS</h5>
                     <ol>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.html">Natalia</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.html">Tommy Bahama</a></li>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.html">Starmore</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti3.html">Zobel and Co Kitchen</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.html">Wayfair</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.html">Palma</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti6.html">Bescope Kitchen</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.html">Edelmar</a></li>
-                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.html">Oisin</a></li>
-                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.html">Wystfield</a></li>
-                        <li><a href="interieri\kuzhina_produktet\produkti4.html">Calgary Kitchen</a></li>
-                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.html">Tuft and Needle</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti1.php">Natalia</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti3.php">Tommy Bahama</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti6.php">Starmore</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti3.php">Zobel and Co Kitchen</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti4.php">Wayfair</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti3.php">Palma</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti6.php">Bescope Kitchen</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti5.php">Edelmar</a></li>
+                        <li><a href="interieri\dhoma_punes_produktet\dhp_produkti2.php">Oisin</a></li>
+                        <li><a href="interieri\dhoma_dites_produktet\dhd_produkti5.php">Wystfield</a></li>
+                        <li><a href="interieri\kuzhina_produktet\produkti4.php">Calgary Kitchen</a></li>
+                        <li><a href="interieri\dhoma_gjumit_produktet\dhgj_produkti5.php">Tuft and Needle</a></li>
 
                     </ol></br>
 
@@ -343,51 +355,26 @@ function showResult(str) {
 
 
                 <div id="d">
-						<h5>CONTACT US</h5>
-					<?php
-					$regex = "/^[a-zA-Z\s]+$/";
-					$regex1 = "/^[a-zA-Z\s\d\.]+$/";
-					$regex2 = "/^[a-zA-Z\d\._]+@[a-zA-Z\d\._]+\.[a-zA-Z\d\.]+$/";
-					if(isset($_POST['submit'])){
-						if(preg_match($regex,$_POST['name'])){
-							$name = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['name'])){
-							$name = "<span style='color:red'>*Required</span>";
-						}
-						else{
-							$name = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex2,$_POST['email'])){
-							$email = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['email'])){
-							$email = "<span style='color:red'>*Required</span>";
-						}else {
-							$email =  "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['subject'])){
-							$subject = "<span style='color:green'>&#10004; Valid input</span>";
-						}else{
-							$subject = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-						if(preg_match($regex1,$_POST['message'])){
-							$message = "<span style='color:green'>&#10004; Valid input</span>";
-						}else if(empty($_POST['message'])){
-							$message = "<span>No input added</span>";
-						}
-						else{
-							$message = "<span style='color:red'>&#10006; Invalid input</span>";
-						}
-					}
-					?>
-						<form method="POST" action="">
-							<input type="text" name="name" placeholder="Name" class="f" /><?php if(isset($name)){echo $name;}?><br /><br /> 
-							<input type="text" name="email" placeholder="Email" class="f" /><?php if(isset($email)){echo $email;}?><br /><br />
-							<input type="type" name="subject" placeholder="Subject" class="f" /><?php if(isset($subject)){echo $subject;}?><br /><br />
-							<textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if(isset($message)){echo $message;}?>
-							<br /><br />
-							<input id="submit" type="submit" name="submit">
-						</form>
-					</div>
+                    <h5>CONTACT US</h5>
+
+                    <form method="POST" action="">
+                        <input type="text" name="name" placeholder="Name" class="f" /><?php if (isset($name)) {
+                                                                                            echo $name;
+                                                                                        } ?><br /><br />
+                        <input type="text" name="email" placeholder="Email" class="f" /><?php if (isset($email)) {
+                                                                                            echo $email;
+                                                                                        } ?><br /><br />
+                        <input type="type" name="subject" placeholder="Subject" class="f" /><?php if (isset($subject)) {
+                                                                                                echo $subject;
+                                                                                            } ?><br /><br />
+                        <textarea name="message" rows="5" cols="20" placeholder="Message" class="f"></textarea><?php if (isset($message)) {
+                                                                                                                    echo $message;
+                                                                                                                } ?>
+                        <br /><br />
+                        <input id="submit" type="submit" name="submit2">
+                        <input type="hidden" name="form_number" value="2" />
+                    </form>
+                </div>
 				</div>
 				<div>
 					<address>
