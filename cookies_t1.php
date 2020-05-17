@@ -52,4 +52,3 @@
       <p><a href=cookies_t1.php>Start a new cookie </a> | <a href=cookies_t2.php>Check the cookie </a> | <a href=cookies_t3.php>Remove the cookie </a></p>
    </body>
 </html>
-COPY TO CLIPBOARD	
