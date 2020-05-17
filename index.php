@@ -199,8 +199,7 @@ function showResult(str) {
 			</div>
 
 			<div class="meetTeam">
-			<h2 class="maintitle"> <?php $str = "Meet The Team";
-                  print_r (explode(" ",$str)); ?></h2>
+			<h2 class="maintitle"> Meet The Team</h2>
 				<p class="src1"><img class="fig1" src="images/imgau/ensarja2.jpeg"
 						style="width: 110px; height: 110px;" /> <?php echo substr("Zonja Ensare Islami",6); ?></p>
 				<p id="pershkrimi"> Ensare is our great leader that we all love and respect.
