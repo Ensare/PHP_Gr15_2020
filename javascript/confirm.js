@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	setTimeout(function(){
-		Konfirmimi.render("Do you want to got it?")
+		Konfirmimi.render("We use cookies to ensure you get the best experience on our website. Do you want to get it?")
  
 	},10000);
  });
@@ -20,7 +20,7 @@ function customConf(){
 		document.getElementById('dialogboxhead').innerHTML='Our Cookie Policy';
 	    document.getElementById('dialogboxbody').innerHTML = dialog;
         document.getElementById('dialogboxfoot').innerHTML = 
-        '<button onclick="Konfirmimi.yes()">Yes</button> <button onclick="Konfirmimi.no()">No</button>';
+        '<button onclick="Konfirmimi.yes()">Accept</button> <button onclick="Konfirmimi.no()">No</button>';
     }
     this.no = function(){
 		document.getElementById('dialogbox').style.display = "none";
