@@ -209,14 +209,13 @@ include("sendEmail.php"); ?>
                 </div>
                 <a href="tips_and_tricks.php">Tips and tricks</a>
                 <a href="porosit_online.php">Online order</a>
-                <a href="apliko_per_pune.php">Apply for job</a>
                 <a href="rreth_nesh.php">About us</a>
             </div>
         </nav>
     </header>
 
 
-    <form method="POST" id="mainForm" action="">
+    <form method="POST" id="mainForm" action="index.php">
         <h1 id="shpi" style="text-align: center; margin-top:2%;">Shipping Information</h1>
         <table cellspacing="50px;" id="forme">
             <thead>
