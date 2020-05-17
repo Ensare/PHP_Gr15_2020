@@ -1,6 +1,6 @@
 <?php
 include('pregEx.php');
-session_start();
+
 try {
 
 $connect = mysqli_connect("localhost", "root", "php123!", "phpconnection");
@@ -51,7 +51,7 @@ catch (Exception $e){
     print_r($e);
 }
 ?>
-?>
+
 
 
 
