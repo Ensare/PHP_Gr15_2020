@@ -1,96 +1,110 @@
 <?php
-include('sendEmail.php');
-
 session_start();
 
 $username = "";
 $email = "";
 $errors = array();
-
-$db = mysqli_connect("localhost", "root", "php123!", "phpconnection");
-
-if (isset($_POST['register']))
+try
 {
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-    $email = mysqli_real_escape_string($db, $_POST['email']);
-    $password1 = mysqli_real_escape_string($db, $_POST['password1']);
-    $password2 = mysqli_real_escape_string($db, $_POST['password2']);
+    $db = mysqli_connect("localhost", "root", "php123!", "phpconnection");
 
-    if (empty($username))
+    if (mysqli_connect_error())
     {
-        array_push($errors, "Username is required");
-    }
-    if (empty($email))
-    {
-        array_push($errors, "Email is required");
-    }
-    if (empty($password1))
-    {
-        array_push($errors, "Password is required");
-    }
-    if ($password1 != $password2)
-    {
-        array_push($errors, "The two passwords do not match");
+        throw new Exception(mysqli_connect_error());
     }
 
-    $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
-    $result = mysqli_query($db, $user_check_query);
-    $user = mysqli_fetch_assoc($result);
-
-    if ($user)
+    if (isset($_POST['register']))
     {
-        if ($user['username'] === $username)
+        $username = mysqli_real_escape_string($db, $_POST['username']);
+        $email = mysqli_real_escape_string($db, $_POST['email']);
+        $password1 = mysqli_real_escape_string($db, $_POST['password1']);
+        $password2 = mysqli_real_escape_string($db, $_POST['password2']);
+
+        if (empty($username))
         {
-            array_push($errors, "Username already exists");
+            array_push($errors, "Username is required");
+        }
+        if (empty($email))
+        {
+            array_push($errors, "Email is required");
+        }
+        if (empty($password1))
+        {
+            array_push($errors, "Password is required");
+        }
+        if ($password1 != $password2)
+        {
+            array_push($errors, "The two passwords do not match");
         }
 
-        if ($user['email'] === $email)
+        $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
+        $result = mysqli_query($db, $user_check_query);
+
+        if (!$result)
         {
-            array_push($errors, "Email already exists");
+            throw new Exception($db->error);
         }
-    }
 
-    if (count($errors) == 0)
-    {
-        $password = md5($password1);
+        $user = mysqli_fetch_assoc($result);
 
-        $query = "INSERT INTO users (username, email, password) 
+        if ($user)
+        {
+            if ($user['username'] === $username)
+            {
+                array_push($errors, "Username already exists");
+            }
+
+            if ($user['email'] === $email)
+            {
+                array_push($errors, "Email already exists");
+            }
+        }
+
+        if (count($errors) == 0)
+        {
+            $password = md5($password1);
+
+            $query = "INSERT INTO users (username, email, password) 
   			  VALUES('$username', '$email', '$password')";
-        mysqli_query($db, $query);
-        $_SESSION['username'] = $username;
-        header('location: home.php');
-        sendEmail($username, $email);
-    }
-}
-if (isset($_POST['login']))
-{
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-    $password = mysqli_real_escape_string($db, $_POST['password']);
-
-    if (empty($username))
-    {
-        array_push($errors, "Username is required");
-    }
-    if (empty($password))
-    {
-        array_push($errors, "Password is required");
-    }
-
-    if (count($errors) == 0)
-    {
-        $password = md5($password);
-        $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-        $results = mysqli_query($db, $query);
-        if (mysqli_num_rows($results) == 1)
-        {
+            mysqli_query($db, $query);
             $_SESSION['username'] = $username;
             header('location: home.php');
         }
-        else
+    }
+    if (isset($_POST['login']))
+    {
+        $username = mysqli_real_escape_string($db, $_POST['username']);
+        $password = mysqli_real_escape_string($db, $_POST['password']);
+
+        if (empty($username))
         {
-            array_push($errors, "Wrong username/password combination");
+            array_push($errors, "Username is required");
+        }
+        if (empty($password))
+        {
+            array_push($errors, "Password is required");
+        }
+
+        if (count($errors) == 0)
+        {
+            $password = md5($password);
+            $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+            $results = mysqli_query($db, $query);
+            if (mysqli_num_rows($results) == 1)
+            {
+                $_SESSION['username'] = $username;
+                header('location: home.php');
+            }
+            else
+            {
+                array_push($errors, "Wrong username/password combination");
+            }
         }
     }
+}
+catch(Exception $e)
+{
+    print_r($e);
 }
 
 ?>
