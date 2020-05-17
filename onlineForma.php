@@ -24,7 +24,13 @@ include("sendEmail.php"); ?>
     <script src="javascript\produktet.js"></script>
 
     <?php
+    try {
     $db = mysqli_connect("localhost", "root", "php123!", "phpconnection");
+
+    if (mysqli_connect_error()){
+        throw new Exception(mysqli_connect_error());
+    }
+
     $contact = $email = $mobile = $address = $country = $city = $zip = "";
     $reg = "/^[a-zA-Z\s\d\.]+$/";
     $reg2 = "/\+[0-9]/s";
@@ -104,6 +110,10 @@ include("sendEmail.php"); ?>
             }
         }
     }
+} catch (Exception $e)
+{
+    print_r($e);
+}
     ?>
 
 
@@ -199,6 +209,7 @@ include("sendEmail.php"); ?>
                 </div>
                 <a href="tips_and_tricks.php">Tips and tricks</a>
                 <a href="porosit_online.php">Online order</a>
+                <a href="apliko_per_pune.php">Apply for job</a>
                 <a href="rreth_nesh.php">About us</a>
             </div>
         </nav>
